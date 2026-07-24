@@ -116,3 +116,97 @@ the end of every phase.
   fresh copies. Documented the convention in `CLAUDE.md`: bump the
   version on any file that changes, in every HTML file linking to it —
   this will recur on every future phase otherwise.
+
+## Phase 1 addendum — palette and typeface comparison tools
+
+Built alongside Phase 2, at the founder's request, to unblock the two
+open questions §9.1 (typeface) and §9.4 (seal colors) without guessing.
+Both live on the Phase 1 style page (`index.html`) as review tooling —
+not part of the site itself, and nothing they do is saved to the token
+files.
+
+- **Palette comparison:** four candidate palettes plus the current
+  provisional one, toggled live via buttons that override
+  `--color-seal-1..5` on `:root`. Because every existing swatch, the
+  opening-ceremony demo card, and a new set of catalogue-thumbnail-style
+  preview blocks all already read those custom properties, switching
+  palettes recolors all of them at once — nothing bespoke to keep in
+  sync. Reverting to "Current" simply removes the inline override, so
+  `css/tokens.css` is never touched by this tool.
+- **Contrast checking, computed, not eyeballed:** implemented the WCAG
+  relative-luminance/contrast-ratio formula in JS and check every
+  candidate color against paper (#FAF7F2) at the AA normal-text
+  threshold (4.5:1), since colophon size counts as small text. Results,
+  verified against an independent Python calculation of the same
+  formula:
+  - **Palette A — Ink & Pigment:** 1 of 5 colors fails (#A67F2E, gold,
+    3.45:1). The other four pass comfortably (5.1–8.3:1).
+  - **Palette B — Wax & Thread:** 2 of 5 fail (#D98E5F at 2.46:1 fails
+    even AA-large; #5E8A87 at 3.60:1 fails normal text but passes
+    AA-large).
+  - **Palette C — Faded Celebration:** fails outright — all 5 colors
+    fail even the more permissive AA-large threshold (3:1), let alone
+    normal text. Every color sits in the 2.0–3.0:1 range against paper.
+  - **Palette D — One Color:** passes (#8E2A23, 7.84:1). Only one hue,
+    applied to all five seal slots.
+  - **Worth flagging independent of any candidate palette:** today's
+    *current provisional* seal colors already have two failures —
+    seal-2 (#C4572E, 4.14:1) and seal-5 (#C79A3B, 2.42:1) — if either
+    is ever used for small text rather than only backgrounds/thumbnails.
+    Not a regression, just a pre-existing fact worth having on record
+    before final colors are sampled.
+- **Typeface comparison:** the three brief candidates (Source Serif 4,
+  Fraunces at low optical size, Newsreader) plus "Current," toggled the
+  same way — overriding `--font-serif` on `:root`, which cascades to
+  the *entire page* (base.css sets it once, on `body`) since it's a
+  single shared token, not five like the seal colors. Fraunces is forced
+  to its low optical size (`font-variation-settings: 'opsz' 9`) rather
+  than letting the browser auto-select a higher optical size at heading
+  scale, since that low-opsz character (ink traps, quirkier detailing)
+  is specifically what the brief asked to audition. Fonts are loaded
+  live from Google Fonts (not self-hosted) — fine for a review tool;
+  worth a self-hosting decision once a typeface is actually chosen, to
+  keep the "must still feel fast" performance budget (§7) intact
+  sitewide.
+- **Testing note:** verified the mechanism end-to-end — real font
+  binaries fetched from Google Fonts (valid WOFF2, confirmed by
+  inspecting the response), `document.fonts.check()` true for all
+  three, computed `font-family`/`font-variation-settings` switching
+  correctly per click. Could **not** visually confirm the three faces
+  paint distinctly from within this environment's headless test
+  browser — even basic system-font swaps (Georgia/Arial/Courier)
+  rendered fine, but all three downloaded webfonts painted pixel-
+  identical to each other, pointing to a font-rasterization limitation
+  in this sandbox rather than a page bug. Needs an eyes-on check in a
+  real browser before treating the visual comparison as trustworthy.
+
+## Phase 2 — Catalogue (errand zone)
+
+- **Placeholder data, explicitly marked:** all four product names and
+  prices below are placeholders supplied by the founder for layout
+  purposes only, not final. Displayed with literal brackets in the UI
+  (`[Save the Date]`, etc.), matching the brief's own placeholder
+  convention (§0) rather than lorem ipsum:
+  1. [Save the Date] — wedding — a thirty-second story — €40
+  2. [Wedding Invitation] — wedding — a one-minute story — €90
+  3. [Anniversary Scroll] — anniversary — a two-minute story — €140
+  4. [Birthday Story] — birthday — a two-minute story — €140
+- Built `catalogue/index.html` (URL `/catalogue/`), `css/catalogue.css`,
+  `js/catalogue.js`. Errand-zone conventions: normal scrolling, no
+  scroll-snap, no opening ceremony — the grid is visible immediately.
+- Thumbnails are flat placeholder blocks, one seal color per product
+  (seal-1 through seal-4), not real preview renders — real live preview
+  thumbnails wait on Phase 4 (the first real preview).
+- Filter is a set of plain occasion buttons (All/Wedding/Anniversary/
+  Birthday); search is a plain-text substring match against each card's
+  title/occasion/duration. Both are client-side only, no URL/query-param
+  sync yet — small enough at 4 products that it wasn't worth adding.
+- Verified locally: filtering by occasion narrows correctly, search
+  matches "wedding" and "birthday" correctly, a non-matching search
+  shows the empty-state message, no console errors.
+- Open questions still outstanding from §9: real typeface (tooling now
+  exists above to help decide), real seal colors (tooling now exists
+  above to help decide), hosting/permanence model, fleuron artwork,
+  launch catalogue size (this phase used 4 as a placeholder count, not
+  a decision), preview gate thresholds, Ada & June content, payment
+  provider.

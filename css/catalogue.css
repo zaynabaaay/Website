@@ -1,0 +1,84 @@
+/* Catalogue index — errand zone. Conventional, fast, no ceremony.
+   See STORIEL_BRIEF.md §3, §8 Phase 2. */
+
+.catalogue-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  margin: var(--space-3) 0;
+}
+
+.catalogue-search {
+  font: inherit;
+  font-size: var(--font-size-body);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+  border-radius: 2px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  flex: 1 1 240px;
+}
+
+.catalogue-filters {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  font: inherit;
+  font-size: var(--font-size-colophon);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+  border-radius: 999px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.filter-chip.is-active {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+
+.catalogue-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-3);
+}
+
+.catalogue-card {
+  border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
+  border-radius: 4px;
+  padding: var(--space-2);
+}
+
+.catalogue-card[hidden] {
+  display: none;
+}
+
+.catalogue-thumb {
+  aspect-ratio: 3 / 4;
+  border-radius: 2px;
+  margin-bottom: var(--space-2);
+}
+
+.catalogue-card h2 {
+  font-size: var(--font-size-body);
+  margin: 0 0 var(--space-1);
+}
+
+.catalogue-price {
+  font-weight: 500;
+  margin: var(--space-1) 0 0;
+}
+
+.catalogue-empty {
+  text-align: center;
+  padding: var(--space-4) 0;
+}

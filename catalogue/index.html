@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storiel — Catalogue</title>
+<meta name="description" content="Storiel pieces by occasion: weddings, anniversaries, birthdays.">
+<link rel="stylesheet" href="../css/tokens.css?v=2">
+<link rel="stylesheet" href="../css/base.css?v=2">
+<link rel="stylesheet" href="../css/layout.css?v=2">
+<link rel="stylesheet" href="../css/catalogue.css?v=1">
+<style>
+  .page { max-width: 960px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
+  .provisional-note { font-size: var(--font-size-colophon); opacity: 0.7; }
+</style>
+</head>
+<body>
+<div class="page zone-errand">
+
+  <header>
+    <p class="colophon"><a href="../index.html">&larr; Foundations</a></p>
+    <h1>Catalogue</h1>
+    <p class="colophon provisional-note">Phase 2. Names and prices below are placeholders, not final — see DECISIONS.md.</p>
+  </header>
+
+  <div class="catalogue-controls">
+    <input type="search" id="catalogue-search" class="catalogue-search" placeholder="Search — try “wedding” or “birthday”" aria-label="Search the catalogue">
+    <div class="catalogue-filters" role="group" aria-label="Filter by occasion">
+      <button type="button" class="filter-chip is-active" data-occasion="all">All</button>
+      <button type="button" class="filter-chip" data-occasion="wedding">Wedding</button>
+      <button type="button" class="filter-chip" data-occasion="anniversary">Anniversary</button>
+      <button type="button" class="filter-chip" data-occasion="birthday">Birthday</button>
+    </div>
+  </div>
+
+  <ul class="catalogue-grid" id="catalogue-grid">
+    <li class="catalogue-card" data-occasion="wedding" data-search="save the date wedding thirty second story">
+      <div class="catalogue-thumb" style="background: var(--color-seal-1);"></div>
+      <h2>[Save the Date]</h2>
+      <p class="colophon">Wedding. A thirty-second story.</p>
+      <p class="catalogue-price">&euro;40</p>
+    </li>
+    <li class="catalogue-card" data-occasion="wedding" data-search="wedding invitation one minute story">
+      <div class="catalogue-thumb" style="background: var(--color-seal-2);"></div>
+      <h2>[Wedding Invitation]</h2>
+      <p class="colophon">Wedding. A one-minute story.</p>
+      <p class="catalogue-price">&euro;90</p>
+    </li>
+    <li class="catalogue-card" data-occasion="anniversary" data-search="anniversary scroll two minute story">
+      <div class="catalogue-thumb" style="background: var(--color-seal-3);"></div>
+      <h2>[Anniversary Scroll]</h2>
+      <p class="colophon">Anniversary. A two-minute story.</p>
+      <p class="catalogue-price">&euro;140</p>
+    </li>
+    <li class="catalogue-card" data-occasion="birthday" data-search="birthday story two minute story">
+      <div class="catalogue-thumb" style="background: var(--color-seal-4);"></div>
+      <h2>[Birthday Story]</h2>
+      <p class="colophon">Birthday. A two-minute story.</p>
+      <p class="catalogue-price">&euro;140</p>
+    </li>
+  </ul>
+
+  <p class="catalogue-empty" id="catalogue-empty" hidden>Nothing matches.</p>
+
+</div>
+<script src="../js/catalogue.js?v=1"></script>
+</body>
+</html>

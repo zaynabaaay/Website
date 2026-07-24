@@ -10,14 +10,18 @@ There is no build/lint/test command because there's no toolchain. To preview loc
 
 **Cache-busting is required on every CSS/JS edit.** GitHub Pages doesn't let us set cache-control headers, and browsers (Safari in particular) cache `.css`/`.js` aggressively enough that users can get fresh HTML paired with stale CSS/JS — the two silently drift out of sync with no error, just broken-looking behavior. Every `<link>`/`<script>` tag that points at a file under `css/` or `js/` carries a `?v=N` query string; bump `N` on *every* file you reference whenever its content changes, in every HTML file that links to it. Forgetting this is a real, already-hit bug, not a hypothetical.
 
-`index.html` is currently the Phase 1 **living style page** (tokens, type, spacing, motion, both zone physics, the opening-ceremony demo) — it is explicitly not the final homepage. Phase 5 replaces it with the real homepage; until then, treat `index.html` as a foundations reference, not production UI.
+`index.html` is currently the Phase 1 **living style page** (tokens, type, spacing, motion, both zone physics, the opening-ceremony demo) — it is explicitly not the final homepage. Phase 5 replaces it with the real homepage; until then, treat `index.html` as a foundations reference, not production UI. It also carries two founder-facing review tools that are not part of the site itself: a **palette comparison** (toggles candidate seal-color sets live by overriding `--color-seal-1..5` on `:root`, with computed WCAG contrast checks against paper) and a **typeface comparison** (same pattern, overriding `--font-serif`, which cascades to the whole page since it's one shared token). Both are pure runtime overrides — they never touch `css/tokens.css` — so "current tokens stay in place until a palette/typeface is actually chosen" holds by construction. If real fonts need visual verification, note that this environment's headless test browser has been observed to render distinct downloaded webfonts pixel-identically (a sandbox font-rasterization limitation, confirmed against working system-font rendering) even when `document.fonts.check()` and computed styles are correct — trust a real browser for the final visual call, not a headless screenshot here.
+
+`catalogue/index.html` (Phase 2) is the Catalogue index, served at `/catalogue/`. Errand zone: normal scrolling, no scroll-snap, no opening ceremony. Its four products are placeholder names/prices (bracketed, e.g. `[Save the Date]`) — see `DECISIONS.md` for the full list; don't treat them as real.
 
 Structure:
 - `css/tokens.css` — design tokens (custom properties): color, type scale, spacing scale, motion durations/easing.
 - `css/base.css` — resets and base typography.
 - `css/layout.css` — the two-zone layout primitives (`.zone-storytelling` / `.zone-errand`).
 - `css/motion.css` — fleuron rotation, opening-ceremony hinge animation, and the mandatory `prefers-reduced-motion` crossfade override.
-- `js/motion.js` — tracks per-card "already opened" state in `localStorage` (key pattern `storiel:opened:<card-id>`) so the opening ceremony compresses from ~700ms to ~200ms after the first open; also handles Enter/Space activation for keyboard users.
+- `css/catalogue.css` — catalogue grid, filter chips, search input.
+- `js/motion.js` — the shared opening-ceremony mechanism (see the `.opening`/`.opening-cover`/`.opening-panel` contract documented at the top of `css/motion.css`). Tracks per-card "already opened" state in `localStorage` (key pattern `storiel:opened:<id>`, wrapped in try/catch since Safari can throw if site data/cookies are blocked) so the ceremony compresses from ~700ms to ~200ms after the first open; also handles Enter/Space activation for keyboard users. Reused as-is by any future opening ceremony (Phase 3 product cover, Phase 4 preview cover) — don't fork it per component.
+- `js/catalogue.js` — occasion-filter and search-substring logic for the catalogue grid.
 
 ## The governing document
 

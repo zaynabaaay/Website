@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Storiel — Foundations (Phase 1)</title>
 <meta name="description" content="Storiel design tokens, type, spacing, motion, and two-zone layout physics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="css/tokens.css?v=2">
 <link rel="stylesheet" href="css/base.css?v=2">
 <link rel="stylesheet" href="css/layout.css?v=2">
@@ -29,6 +32,19 @@
   .errand-demo { height: 30vh; overflow-y: auto; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
   .provisional-note { font-size: var(--font-size-colophon); opacity: 0.7; }
   .reset-demo { font: inherit; font-size: var(--font-size-colophon); background: none; border: none; padding: 0; margin-top: var(--space-1); color: var(--color-ink); text-decoration: underline; cursor: pointer; }
+  .home-links { margin-bottom: var(--space-2); }
+  .compare-toggle { display: flex; flex-wrap: wrap; gap: var(--space-1); margin: var(--space-2) 0 var(--space-3); }
+  .compare-chip { font: inherit; font-size: var(--font-size-colophon); padding: var(--space-1) var(--space-2); border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent); border-radius: 999px; background: var(--color-paper); color: var(--color-ink); cursor: pointer; }
+  .compare-chip.is-active { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+  h3 { font-size: var(--font-size-body); margin: var(--space-3) 0 var(--space-1); }
+  .palette-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-2); }
+  .palette-slot { border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent); border-radius: 4px; padding: var(--space-1); }
+  .palette-thumb { aspect-ratio: 3 / 4; border-radius: 2px; margin-bottom: var(--space-1); }
+  .palette-text-sample { margin: 0; }
+  .contrast-label { font-family: monospace; font-size: 0.75rem; margin: var(--space-1) 0 0; }
+  .contrast-fail { color: #B00020; font-weight: 600; }
+  .font-sample-row { margin-bottom: var(--space-2); }
+  :root.font-preview-fraunces { font-optical-sizing: none; font-variation-settings: 'opsz' 9; }
 </style>
 </head>
 <body>
@@ -37,6 +53,7 @@
   <header>
     <p class="colophon provisional-note">Phase 1 — Foundations. This is a living style page, not the homepage. Typeface below is a provisional placeholder (no font has been chosen yet — see STORIEL_BRIEF.md §9.1).</p>
     <h1><i class="fleuron" aria-hidden="true">&#10087;</i> Storiel — Foundations</h1>
+    <p class="colophon home-links"><a href="catalogue/">Catalogue &rarr;</a> (Phase 2)</p>
   </header>
 
   <section>
@@ -75,11 +92,72 @@
   </section>
 
   <section>
+    <h2>Palette comparison</h2>
+    <p class="colophon provisional-note">Four candidate seal palettes (STORIEL_BRIEF.md open question §9.4). Choosing one previews it live — against the catalogue-thumbnail placeholders and small colophon-size text below, and against the opening-ceremony demo card further down the page — without saving anything; the token file keeps today's provisional colors until a palette is actually chosen. Contrast below is checked against the paper background (#FAF7F2) at colophon size, WCAG AA normal-text threshold (4.5:1).</p>
+
+    <div class="compare-toggle" id="palette-toggle" role="group" aria-label="Choose a palette to preview">
+      <button type="button" class="compare-chip is-active" data-palette="current">Current (provisional)</button>
+      <button type="button" class="compare-chip" data-palette="a">A — Ink &amp; Pigment</button>
+      <button type="button" class="compare-chip" data-palette="b">B — Wax &amp; Thread</button>
+      <button type="button" class="compare-chip" data-palette="c">C — Faded Celebration</button>
+      <button type="button" class="compare-chip" data-palette="d">D — One Color</button>
+    </div>
+
+    <h3>Contrast against paper, per seal slot</h3>
+    <div class="palette-slots">
+      <div class="palette-slot">
+        <div class="palette-thumb" style="background: var(--color-seal-1);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--color-seal-1);">Small text, seal-1.</p>
+        <p class="contrast-label" id="seal-1-contrast"></p>
+      </div>
+      <div class="palette-slot">
+        <div class="palette-thumb" style="background: var(--color-seal-2);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--color-seal-2);">Small text, seal-2.</p>
+        <p class="contrast-label" id="seal-2-contrast"></p>
+      </div>
+      <div class="palette-slot">
+        <div class="palette-thumb" style="background: var(--color-seal-3);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--color-seal-3);">Small text, seal-3.</p>
+        <p class="contrast-label" id="seal-3-contrast"></p>
+      </div>
+      <div class="palette-slot">
+        <div class="palette-thumb" style="background: var(--color-seal-4);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--color-seal-4);">Small text, seal-4.</p>
+        <p class="contrast-label" id="seal-4-contrast"></p>
+      </div>
+      <div class="palette-slot">
+        <div class="palette-thumb" style="background: var(--color-seal-5);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--color-seal-5);">Small text, seal-5.</p>
+        <p class="contrast-label" id="seal-5-contrast"></p>
+      </div>
+    </div>
+    <p class="colophon provisional-note">The opening-ceremony demo card further down this page uses seal-2 for its cover and seal-4 for its panel — scroll down to judge it against real UI, not just swatches.</p>
+  </section>
+
+  <section>
     <h2>Type</h2>
     <p class="colophon provisional-note">One serif family, three sizes. Family shown here (Source Serif 4) is a stand-in.</p>
     <div class="type-row" style="font-size: var(--font-size-heading);">Modest heading</div>
     <div class="type-row" style="font-size: var(--font-size-body);">Body text, set at a comfortable reading size, with <em>real italics</em> rather than a synthesized slant.</div>
     <div class="type-row colophon">Small / colophon size — capacity, duration, delivery, permanence, price.</div>
+  </section>
+
+  <section>
+    <h2>Typeface comparison</h2>
+    <p class="colophon provisional-note">The three candidates from STORIEL_BRIEF.md §5 / §9.1. Choosing one previews it live across this entire page — this section, the type sizes above, the colophon captions throughout, and the opening-ceremony demo card further down — the same way the palette toggle above works. Nothing is saved; the token file keeps the placeholder until a typeface is actually chosen. Fraunces is shown at its low optical size, per the brief's specific interest in that variant.</p>
+
+    <div class="compare-toggle" id="font-toggle" role="group" aria-label="Choose a typeface to preview">
+      <button type="button" class="compare-chip is-active" data-font="current">Current (provisional)</button>
+      <button type="button" class="compare-chip" data-font="source-serif">Source Serif 4</button>
+      <button type="button" class="compare-chip" data-font="fraunces">Fraunces (low optical size)</button>
+      <button type="button" class="compare-chip" data-font="newsreader">Newsreader</button>
+    </div>
+
+    <div class="font-sample">
+      <div class="font-sample-row" style="font-size: var(--font-size-heading);">Modest heading</div>
+      <div class="font-sample-row" style="font-size: var(--font-size-body);">Body text, set at a comfortable reading size, with <em>real italics</em> rather than a synthesized slant.</div>
+      <div class="font-sample-row colophon">Small / colophon size — capacity, duration, delivery, permanence, price.</div>
+    </div>
   </section>
 
   <section>
@@ -152,6 +230,102 @@
     }
     location.reload();
   });
+</script>
+<script>
+  // Palette comparison — Phase 1 review tool, not part of the site itself.
+  // Previews candidate palettes by overriding --color-seal-* on :root, which
+  // every existing var()-consuming element (demo card, swatches below,
+  // colophon text) already picks up. Nothing here touches css/tokens.css.
+  (function () {
+    const root = document.documentElement;
+    const PAPER = '#FAF7F2';
+
+    function hexToRgb(hex) {
+      const h = hex.replace('#', '');
+      return [0, 2, 4].map((i) => parseInt(h.substring(i, i + 2), 16));
+    }
+    function srgbToLinear(c) {
+      const s = c / 255;
+      return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+    }
+    function relativeLuminance(rgb) {
+      const [r, g, b] = rgb.map(srgbToLinear);
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    }
+    function contrastRatio(hexA, hexB) {
+      const lA = relativeLuminance(hexToRgb(hexA));
+      const lB = relativeLuminance(hexToRgb(hexB));
+      const lighter = Math.max(lA, lB);
+      const darker = Math.min(lA, lB);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    const CURRENT_SEAL_COLORS = ['#5B6EA5', '#C4572E', '#5C6B4F', '#6E4A6B', '#C79A3B'];
+    const PALETTES = {
+      current: CURRENT_SEAL_COLORS,
+      a: ['#3B4A6B', '#B0492F', '#5C6B4F', '#6E4A6B', '#A67F2E'],
+      b: ['#9E2B25', '#2E4C8A', '#274E3D', '#D98E5F', '#5E8A87'],
+      c: ['#C4838B', '#7A96B8', '#A8B58A', '#D9A94E', '#9B8AA3'],
+      d: ['#8E2A23', '#8E2A23', '#8E2A23', '#8E2A23', '#8E2A23'],
+    };
+
+    const paletteButtons = Array.from(document.querySelectorAll('#palette-toggle .compare-chip'));
+
+    function applyPalette(key) {
+      PALETTES[key].forEach((hex, i) => {
+        const slot = i + 1;
+        if (key === 'current') {
+          root.style.removeProperty(`--color-seal-${slot}`);
+        } else {
+          root.style.setProperty(`--color-seal-${slot}`, hex);
+        }
+        const ratio = contrastRatio(hex, PAPER);
+        const passes = ratio >= 4.5;
+        const label = document.getElementById(`seal-${slot}-contrast`);
+        if (label) {
+          label.textContent = `${hex} — ${ratio.toFixed(2)}:1 ${passes ? 'PASS' : 'FAIL (below 4.5:1 AA)'}`;
+          label.classList.toggle('contrast-fail', !passes);
+        }
+      });
+    }
+
+    paletteButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        paletteButtons.forEach((b) => b.classList.toggle('is-active', b === button));
+        applyPalette(button.dataset.palette);
+      });
+    });
+
+    applyPalette('current');
+  })();
+</script>
+<script>
+  // Typeface comparison — Phase 1 review tool, not part of the site itself.
+  // Previews candidates by overriding --font-serif on :root, which cascades
+  // to every element on the page (base.css sets it once, on body).
+  (function () {
+    const root = document.documentElement;
+    const FONT_STACKS = {
+      'source-serif': "'Source Serif 4', Georgia, serif",
+      fraunces: "'Fraunces', Georgia, serif",
+      newsreader: "'Newsreader', Georgia, serif",
+    };
+
+    const fontButtons = Array.from(document.querySelectorAll('#font-toggle .compare-chip'));
+
+    fontButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        fontButtons.forEach((b) => b.classList.toggle('is-active', b === button));
+        const key = button.dataset.font;
+        root.classList.toggle('font-preview-fraunces', key === 'fraunces');
+        if (key === 'current' || !FONT_STACKS[key]) {
+          root.style.removeProperty('--font-serif');
+        } else {
+          root.style.setProperty('--font-serif', FONT_STACKS[key]);
+        }
+      });
+    });
+  })();
 </script>
 </body>
 </html>
