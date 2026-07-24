@@ -28,6 +28,7 @@
   .storytelling-demo .spread:nth-child(3) { background: color-mix(in srgb, var(--color-seal-4) 12%, var(--color-paper)); }
   .errand-demo { height: 30vh; overflow-y: auto; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
   .provisional-note { font-size: var(--font-size-colophon); opacity: 0.7; }
+  .reset-demo { font: inherit; font-size: var(--font-size-colophon); background: none; border: none; padding: 0; margin-top: var(--space-1); color: var(--color-ink); text-decoration: underline; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -109,6 +110,7 @@
         <p>Open. This is what was inside.</p>
       </div>
     </div>
+    <p class="colophon"><button type="button" id="reset-demo" class="reset-demo">Reset this demo — see the full-length opening again</button></p>
   </section>
 
   <section>
@@ -138,5 +140,18 @@
 
 </div>
 <script src="js/motion.js?v=2"></script>
+<script>
+  // Demo-only: lets a reviewer replay the full-length opening on this
+  // style-guide page. Not part of the shared opening-ceremony mechanism —
+  // real product/preview covers should not offer this.
+  document.getElementById('reset-demo').addEventListener('click', () => {
+    try {
+      localStorage.removeItem('storiel:opened:foundations-demo');
+    } catch (err) {
+      // ignore — see js/motion.js
+    }
+    location.reload();
+  });
+</script>
 </body>
 </html>
