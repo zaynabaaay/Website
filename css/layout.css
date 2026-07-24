@@ -1,0 +1,33 @@
+/* Two-zone layout primitives — Storiel
+   Storytelling zone and errand zone have different physics; never blend them.
+   See STORIEL_BRIEF.md §3. */
+
+/* Storytelling zone: paginated spreads, hard settle, center spine,
+   one object per view. CSS scroll-snap, not JS scroll hijacking. */
+.zone-storytelling {
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.zone-storytelling .spread {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4) var(--space-3);
+}
+
+/* Errand zone: normal scrolling, fast, conventional, zero ceremony. */
+.zone-errand {
+  scroll-snap-type: none;
+}
+
+.zone-errand .row {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+}

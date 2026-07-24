@@ -1,0 +1,47 @@
+/* Base styles — Storiel */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light; /* no dark mode, per the brief */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--font-size-heading);
+  line-height: 1.25;
+  margin: 0 0 var(--space-2);
+}
+
+p {
+  margin: 0 0 var(--space-2);
+}
+
+em, i {
+  font-style: italic; /* real italics required, not synthesized */
+}
+
+a {
+  color: inherit;
+}
+
+.colophon {
+  font-size: var(--font-size-colophon);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}

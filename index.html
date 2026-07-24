@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Storiel — Foundations (Phase 1)</title>
+<meta name="description" content="Storiel design tokens, type, spacing, motion, and two-zone layout physics.">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/motion.css">
+<style>
+  .page { max-width: 880px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
+  section { margin-bottom: var(--space-5); }
+  .swatches { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .swatch { width: 120px; }
+  .swatch-color { height: 80px; border-radius: 2px; }
+  .swatch code { font-size: var(--font-size-colophon); display: block; margin-top: var(--space-1); }
+  .type-row { margin-bottom: var(--space-2); }
+  .space-row { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1); }
+  .space-bar { background: var(--color-seal-1); height: 12px; }
+  .fleuron-demo { font-size: 2rem; padding: var(--space-2); border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); display: inline-flex; }
+  .demo-card-cover { background: var(--color-seal-2); color: var(--color-paper); border-radius: 4px; padding: var(--space-3); cursor: pointer; }
+  .storytelling-demo { height: 60vh; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
+  .storytelling-demo .spread:nth-child(1) { background: color-mix(in srgb, var(--color-seal-1) 12%, var(--color-paper)); }
+  .storytelling-demo .spread:nth-child(2) { background: color-mix(in srgb, var(--color-seal-3) 12%, var(--color-paper)); }
+  .storytelling-demo .spread:nth-child(3) { background: color-mix(in srgb, var(--color-seal-4) 12%, var(--color-paper)); }
+  .errand-demo { height: 30vh; overflow-y: auto; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
+  .provisional-note { font-size: var(--font-size-colophon); opacity: 0.7; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <p class="colophon provisional-note">Phase 1 — Foundations. This is a living style page, not the homepage. Typeface below is a provisional placeholder (no font has been chosen yet — see STORIEL_BRIEF.md §9.1).</p>
+    <h1><i class="fleuron" aria-hidden="true">&#10087;</i> Storiel — Foundations</h1>
+  </header>
+
+  <section>
+    <h2>Color</h2>
+    <p class="colophon provisional-note">All values below are provisional and will be replaced by physically sampled hues.</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--color-paper); border: 1px solid #ddd;"></div>
+        <code>paper #FAF7F2</code>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--color-ink);"></div>
+        <code>ink #26211C</code>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--color-seal-1);"></div>
+        <code>seal-1 #5B6EA5</code>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--color-seal-2);"></div>
+        <code>seal-2 #C4572E</code>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--color-seal-3);"></div>
+        <code>seal-3 #5C6B4F</code>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--color-seal-4);"></div>
+        <code>seal-4 #6E4A6B</code>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--color-seal-5);"></div>
+        <code>seal-5 #C79A3B</code>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Type</h2>
+    <p class="colophon provisional-note">One serif family, three sizes. Family shown here (Source Serif 4) is a stand-in.</p>
+    <div class="type-row" style="font-size: var(--font-size-heading);">Modest heading</div>
+    <div class="type-row" style="font-size: var(--font-size-body);">Body text, set at a comfortable reading size, with <em>real italics</em> rather than a synthesized slant.</div>
+    <div class="type-row colophon">Small / colophon size — capacity, duration, delivery, permanence, price.</div>
+  </section>
+
+  <section>
+    <h2>Spacing</h2>
+    <div class="space-row"><div class="space-bar" style="width: var(--space-1);"></div><code>--space-1: 8px</code></div>
+    <div class="space-row"><div class="space-bar" style="width: var(--space-2);"></div><code>--space-2: 16px</code></div>
+    <div class="space-row"><div class="space-bar" style="width: var(--space-3);"></div><code>--space-3: 32px</code></div>
+    <div class="space-row"><div class="space-bar" style="width: var(--space-4);"></div><code>--space-4: 64px</code></div>
+    <div class="space-row"><div class="space-bar" style="width: var(--space-5);"></div><code>--space-5: 128px</code></div>
+  </section>
+
+  <section>
+    <h2>The fleuron (placeholder)</h2>
+    <p class="colophon provisional-note">Final artwork does not exist yet (STORIEL_BRIEF.md §9.5). This is a plain glyph standing in for it. Hover or focus it — it turns a quarter turn.</p>
+    <a href="#" class="openable fleuron-demo" aria-label="Open (placeholder)"><span class="fleuron" aria-hidden="true">&#10087;</span></a>
+  </section>
+
+  <section>
+    <h2>Opening ceremony</h2>
+    <p class="colophon">Click the card to open it. Reload the page and open it again — the second time settles faster. With reduced motion enabled in your OS, the lift becomes a plain crossfade instead.</p>
+    <div class="demo-card" data-card-id="foundations-demo">
+      <div class="demo-card-cover openable demo-card-trigger" tabindex="0" role="button" aria-label="Open demo card">
+        <span class="fleuron" aria-hidden="true">&#10087;</span>
+        <p>A small world. Click to open.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Storytelling zone physics</h2>
+    <p class="colophon">Paginated spreads, hard settle, one object per view. Scroll inside the box.</p>
+    <div class="storytelling-demo zone-storytelling">
+      <div class="spread"><p>Spread one.</p></div>
+      <div class="spread"><p>Spread two.</p></div>
+      <div class="spread"><p>Spread three.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Errand zone physics</h2>
+    <p class="colophon">Normal scrolling, conventional, zero ceremony. Scroll inside the box.</p>
+    <div class="errand-demo zone-errand">
+      <div class="row">Row one</div>
+      <div class="row">Row two</div>
+      <div class="row">Row three</div>
+      <div class="row">Row four</div>
+      <div class="row">Row five</div>
+      <div class="row">Row six</div>
+      <div class="row">Row seven</div>
+      <div class="row">Row eight</div>
+    </div>
+  </section>
+
+</div>
+<script src="js/motion.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/* Design tokens — Storiel
+   Values marked "provisional" are placeholders pending founder decisions
+   (see STORIEL_BRIEF.md §9) and are expected to be swapped later. */
+
+:root {
+  /* Color — provisional, will be replaced by physically sampled hues */
+  --color-paper: #FAF7F2; /* provisional */
+  --color-ink: #26211C; /* provisional */
+  --color-seal-1: #5B6EA5; /* provisional */
+  --color-seal-2: #C4572E; /* provisional */
+  --color-seal-3: #5C6B4F; /* provisional */
+  --color-seal-4: #6E4A6B; /* provisional */
+  --color-seal-5: #C79A3B; /* provisional */
+
+  /* Typography — provisional placeholder family; founder has not chosen
+     a final typeface yet (STORIEL_BRIEF.md §9.1). Swap this one variable
+     when they do. Three sizes only, per the brief. */
+  --font-serif: 'Source Serif 4', Georgia, serif; /* provisional */
+  --font-size-body: 1rem;
+  --font-size-colophon: 0.8125rem;
+  --font-size-heading: 1.75rem;
+
+  /* Spacing scale */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 32px;
+  --space-4: 64px;
+  --space-5: 128px;
+
+  /* Motion — one shared easing curve for everything */
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-open-first: 700ms;
+  --duration-open-compressed: 200ms;
+  --duration-open-reduced: 200ms;
+}

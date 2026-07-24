@@ -1,0 +1,56 @@
+/* Motion — Storiel
+   One shared easing curve, hinge/paper physics, mandatory reduced-motion
+   crossfade. See STORIEL_BRIEF.md §6. */
+
+/* The fleuron: brand mark, placeholder glyph until final artwork exists
+   (STORIEL_BRIEF.md §9.5). Rotates a quarter-turn on openable hover/focus. */
+.fleuron {
+  display: inline-block;
+  font-style: normal;
+  transition: transform var(--duration-open-compressed) var(--ease-standard);
+}
+
+.openable:hover .fleuron,
+.openable:focus-visible .fleuron {
+  transform: rotate(90deg);
+}
+
+/* Opening ceremony demo card: hinge/lift, full duration on first open,
+   compressed on repeat (state tracked in localStorage by motion.js). */
+.demo-card {
+  position: relative;
+  perspective: 1200px;
+  width: min(320px, 80vw);
+}
+
+.demo-card-cover {
+  transform-origin: left center;
+  transition: transform var(--duration-open-first) var(--ease-standard);
+  transform: rotateY(0deg);
+}
+
+.demo-card.is-open .demo-card-cover {
+  transform: rotateY(-110deg);
+}
+
+.demo-card.repeat .demo-card-cover {
+  transition-duration: var(--duration-open-compressed);
+}
+
+/* prefers-reduced-motion: every opening becomes a simple crossfade —
+   mandatory, not optional. */
+@media (prefers-reduced-motion: reduce) {
+  .demo-card-cover {
+    transition: opacity var(--duration-open-reduced) var(--ease-standard);
+    transform: none;
+  }
+
+  .demo-card.is-open .demo-card-cover {
+    transform: none;
+    opacity: 0;
+  }
+
+  .zone-storytelling {
+    scroll-behavior: auto;
+  }
+}

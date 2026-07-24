@@ -4,9 +4,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-This repository is currently **empty of code** — a greenfield project for the Storiel website. No package manager, build tool, framework, or test runner has been chosen yet. Do not assume a stack; the tech choices are made during Phase 1 (see below) and this file should be updated once they're decided.
+Phase 1 (Foundations) is built. The site is **plain static HTML/CSS/JS** — no package manager, build step, framework, or test runner. This was a deliberate choice for a small, ceremony-light site that deploys straight to GitHub Pages; keep using plain HTML/CSS/JS unless a later phase (e.g. checkout in Phase 6) genuinely requires more.
 
-There are no build, lint, or test commands to document yet. Once Phase 1 introduces tooling, add the actual commands here (do not invent placeholders).
+There is no build/lint/test command because there's no toolchain. To preview locally, serve the repo root with any static file server, e.g. `python3 -m http.server` and open `index.html`.
+
+`index.html` is currently the Phase 1 **living style page** (tokens, type, spacing, motion, both zone physics, the opening-ceremony demo) — it is explicitly not the final homepage. Phase 5 replaces it with the real homepage; until then, treat `index.html` as a foundations reference, not production UI.
+
+Structure:
+- `css/tokens.css` — design tokens (custom properties): color, type scale, spacing scale, motion durations/easing.
+- `css/base.css` — resets and base typography.
+- `css/layout.css` — the two-zone layout primitives (`.zone-storytelling` / `.zone-errand`).
+- `css/motion.css` — fleuron rotation, opening-ceremony hinge animation, and the mandatory `prefers-reduced-motion` crossfade override.
+- `js/motion.js` — tracks per-card "already opened" state in `localStorage` (key pattern `storiel:opened:<card-id>`) so the opening ceremony compresses from ~700ms to ~200ms after the first open; also handles Enter/Space activation for keyboard users.
 
 ## The governing document
 
