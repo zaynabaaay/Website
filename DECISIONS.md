@@ -95,3 +95,24 @@ the end of every phase.
   — if it throws, the ceremony still opens and closes, it just can't
   remember "already opened" on that device (falls back to full-duration
   animation every time instead of compressing to the repeat duration).
+
+### Bug fix: stale CSS cache showed cover and panel stacked instead of overlaid
+
+- **Reported:** on the founder's iPad, regular (non-Incognito) Safari
+  showed both the cover and the panel as separate stacked boxes at all
+  times — pressing one just changed the fleuron icon, not an open/close
+  reveal. The same page in a private tab worked correctly (cover hidden,
+  panel shown, matching the intended overlay behavior).
+- **Root cause:** the browser was serving a fresh `index.html` (with the
+  `.opening-cover`/`.opening-panel` markup already in it) alongside a
+  *stale cached* `css/motion.css` from before that markup existed — so
+  none of the new overlay/opacity/positioning rules applied, and the two
+  elements just rendered as plain stacked blocks per the inline swatch
+  styling in `index.html`. Private/Incognito browsing always fetches
+  fresh, which is why only the regular tab showed it. GitHub Pages gives
+  no way to set cache-control headers to prevent this.
+- **Fix:** added a `?v=2` query string to every `css/`/`js/` asset link in
+  `index.html`, forcing browsers to treat them as new URLs and fetch
+  fresh copies. Documented the convention in `CLAUDE.md`: bump the
+  version on any file that changes, in every HTML file linking to it —
+  this will recur on every future phase otherwise.

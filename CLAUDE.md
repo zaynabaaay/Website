@@ -8,6 +8,8 @@ Phase 1 (Foundations) is built. The site is **plain static HTML/CSS/JS** — no 
 
 There is no build/lint/test command because there's no toolchain. To preview locally, serve the repo root with any static file server, e.g. `python3 -m http.server` and open `index.html`.
 
+**Cache-busting is required on every CSS/JS edit.** GitHub Pages doesn't let us set cache-control headers, and browsers (Safari in particular) cache `.css`/`.js` aggressively enough that users can get fresh HTML paired with stale CSS/JS — the two silently drift out of sync with no error, just broken-looking behavior. Every `<link>`/`<script>` tag that points at a file under `css/` or `js/` carries a `?v=N` query string; bump `N` on *every* file you reference whenever its content changes, in every HTML file that links to it. Forgetting this is a real, already-hit bug, not a hypothetical.
+
 `index.html` is currently the Phase 1 **living style page** (tokens, type, spacing, motion, both zone physics, the opening-ceremony demo) — it is explicitly not the final homepage. Phase 5 replaces it with the real homepage; until then, treat `index.html` as a foundations reference, not production UI.
 
 Structure:
