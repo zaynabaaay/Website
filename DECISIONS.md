@@ -72,3 +72,26 @@ the end of every phase.
   — rather than each one growing its own animation code and risking the
   same bug again. The contract is documented directly above the rules in
   `css/motion.css`.
+
+### Bug fix: demo card unresponsive on iOS Safari (independent of the reduced-motion fix above)
+
+- **Reported:** on iPhone/iPad Safari, tapping the demo card did nothing —
+  not fixed by turning Reduce Motion off, so a separate issue from the
+  crossfade bug above.
+- **Root cause, confirmed:** `js/motion.js` called `localStorage.getItem`/
+  `.setItem` with no error handling. Safari throws a `SecurityError` from
+  `localStorage` when the user has site data/cookies blocked (a real,
+  reachable Safari privacy setting, not a hypothetical). That exception
+  fired during setup, before `trigger.addEventListener('click', toggle)`
+  ever ran — so the tap handler was simply never attached. Everything
+  else on the page kept working because it's pure CSS (fleuron hover) or
+  native browser behavior (scrolling), which is why only the card seemed
+  broken. Reproduced directly: re-ran the pre-fix `motion.js` with
+  `localStorage` forced to throw and confirmed the click handler never
+  attaches (`is-open` never gets applied); confirmed the new code attaches
+  it correctly under the same condition.
+- **Fix:** wrapped both `localStorage` calls in `try/catch`. The opening
+  ceremony's open/close behavior no longer depends on storage succeeding
+  — if it throws, the ceremony still opens and closes, it just can't
+  remember "already opened" on that device (falls back to full-duration
+  animation every time instead of compressing to the repeat duration).

@@ -10,8 +10,14 @@ document.querySelectorAll('.opening').forEach((opening) => {
   const trigger = opening.querySelector('.opening-trigger');
   const panel = opening.querySelector('.opening-panel');
 
-  if (localStorage.getItem(key) === 'true') {
-    opening.classList.add('repeat');
+  try {
+    if (localStorage.getItem(key) === 'true') {
+      opening.classList.add('repeat');
+    }
+  } catch (err) {
+    // localStorage can throw (e.g. cookies/site data blocked in Safari).
+    // The ceremony must still open and close — it just won't remember
+    // "already opened" on this device.
   }
 
   const toggle = () => {
@@ -19,7 +25,11 @@ document.querySelectorAll('.opening').forEach((opening) => {
     trigger.setAttribute('aria-expanded', String(isOpen));
     if (panel) panel.setAttribute('aria-hidden', String(!isOpen));
     if (isOpen) {
-      localStorage.setItem(key, 'true');
+      try {
+        localStorage.setItem(key, 'true');
+      } catch (err) {
+        // ignore — see above
+      }
     }
   };
 
