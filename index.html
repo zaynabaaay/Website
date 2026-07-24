@@ -20,7 +20,8 @@
   .space-row { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1); }
   .space-bar { background: var(--color-seal-1); height: 12px; }
   .fleuron-demo { font-size: 2rem; padding: var(--space-2); border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); display: inline-flex; }
-  .demo-card-cover { background: var(--color-seal-2); color: var(--color-paper); border-radius: 4px; padding: var(--space-3); cursor: pointer; }
+  .opening-cover { background: var(--color-seal-2); color: var(--color-paper); border-radius: 4px; padding: var(--space-3); cursor: pointer; }
+  .opening-panel { background: var(--color-seal-4); color: var(--color-paper); border-radius: 4px; padding: var(--space-3); }
   .storytelling-demo { height: 60vh; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
   .storytelling-demo .spread:nth-child(1) { background: color-mix(in srgb, var(--color-seal-1) 12%, var(--color-paper)); }
   .storytelling-demo .spread:nth-child(2) { background: color-mix(in srgb, var(--color-seal-3) 12%, var(--color-paper)); }
@@ -97,11 +98,15 @@
 
   <section>
     <h2>Opening ceremony</h2>
-    <p class="colophon">Click the card to open it. Reload the page and open it again — the second time settles faster. With reduced motion enabled in your OS, the lift becomes a plain crossfade instead.</p>
-    <div class="demo-card" data-card-id="foundations-demo">
-      <div class="demo-card-cover openable demo-card-trigger" tabindex="0" role="button" aria-label="Open demo card">
+    <p class="colophon">Click the card to open it. Reload the page and open it again — the second time settles faster. With reduced motion enabled in your OS, the lift becomes a plain crossfade — same end state, no ceremony.</p>
+    <div class="opening" data-opening-id="foundations-demo">
+      <div class="opening-cover opening-trigger openable" tabindex="0" role="button" aria-expanded="false" aria-label="Open demo card">
         <span class="fleuron" aria-hidden="true">&#10087;</span>
         <p>A small world. Click to open.</p>
+      </div>
+      <div class="opening-panel" aria-hidden="true">
+        <span class="fleuron" aria-hidden="true">&#10087;</span>
+        <p>Open. This is what was inside.</p>
       </div>
     </div>
   </section>

@@ -15,39 +15,85 @@
   transform: rotate(90deg);
 }
 
-/* Opening ceremony demo card: hinge/lift, full duration on first open,
-   compressed on repeat (state tracked in localStorage by motion.js). */
-.demo-card {
+/* Opening ceremony — the one shared open/close mechanism every openable
+   component uses (this demo card now; product covers in Phase 3 and the
+   preview cover in Phase 4 reuse the same .opening/.opening-cover/
+   .opening-panel contract instead of inventing their own).
+
+   Structure required of any .opening:
+     .opening
+       .opening-trigger.opening-cover   — the closed state (always in flow)
+       .opening-panel                   — the opened state (absolutely
+                                           positioned over the cover)
+
+   .is-open and .repeat are toggled by js/motion.js. Full motion and
+   reduced motion MUST land on the identical end state (cover invisible,
+   panel visible) — only the transition differs between the two. */
+.opening {
   position: relative;
   perspective: 1200px;
   width: min(320px, 80vw);
 }
 
-.demo-card-cover {
+.opening-cover,
+.opening-panel {
+  transition: opacity var(--duration-open-first) var(--ease-standard);
+}
+
+.opening-cover {
+  position: relative;
+  z-index: 1;
   transform-origin: left center;
-  transition: transform var(--duration-open-first) var(--ease-standard);
   transform: rotateY(0deg);
+  opacity: 1;
+  transition-property: transform, opacity;
 }
 
-.demo-card.is-open .demo-card-cover {
+.opening-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opening.is-open .opening-cover {
   transform: rotateY(-110deg);
+  opacity: 0;
+  pointer-events: none;
 }
 
-.demo-card.repeat .demo-card-cover {
+.opening.is-open .opening-panel {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.opening.repeat .opening-cover,
+.opening.repeat .opening-panel {
   transition-duration: var(--duration-open-compressed);
 }
 
 /* prefers-reduced-motion: every opening becomes a simple crossfade —
-   mandatory, not optional. */
+   mandatory, not optional. Same cover-hidden/panel-shown end state as
+   full motion; only the transform is dropped and the duration shortens. */
 @media (prefers-reduced-motion: reduce) {
-  .demo-card-cover {
-    transition: opacity var(--duration-open-reduced) var(--ease-standard);
+  .opening-cover {
+    transition-property: opacity;
     transform: none;
   }
 
-  .demo-card.is-open .demo-card-cover {
+  .opening.is-open .opening-cover {
     transform: none;
-    opacity: 0;
+  }
+
+  .opening-cover,
+  .opening-panel {
+    transition-duration: var(--duration-open-reduced);
+  }
+
+  .opening.repeat .opening-cover,
+  .opening.repeat .opening-panel {
+    transition-duration: var(--duration-open-reduced);
   }
 
   .zone-storytelling {

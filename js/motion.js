@@ -1,19 +1,24 @@
-// Opening ceremony state — Storiel
-// Plays in full on first encounter; compresses to ~200ms afterward.
-// Tracked in localStorage; no account required. See STORIEL_BRIEF.md §3.
+// Opening ceremony — Storiel
+// The one shared open/close mechanism for every openable component
+// (see the .opening contract documented in css/motion.css). Plays in
+// full on first encounter; compresses to ~200ms afterward. Tracked in
+// localStorage; no account required. See STORIEL_BRIEF.md §3.
 
-document.querySelectorAll('.demo-card').forEach((card) => {
-  const id = card.dataset.cardId || 'demo';
+document.querySelectorAll('.opening').forEach((opening) => {
+  const id = opening.dataset.openingId || 'opening';
   const key = `storiel:opened:${id}`;
-  const trigger = card.querySelector('.demo-card-trigger');
+  const trigger = opening.querySelector('.opening-trigger');
+  const panel = opening.querySelector('.opening-panel');
 
   if (localStorage.getItem(key) === 'true') {
-    card.classList.add('repeat');
+    opening.classList.add('repeat');
   }
 
   const toggle = () => {
-    card.classList.toggle('is-open');
-    if (card.classList.contains('is-open')) {
+    const isOpen = opening.classList.toggle('is-open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+    if (panel) panel.setAttribute('aria-hidden', String(!isOpen));
+    if (isOpen) {
       localStorage.setItem(key, 'true');
     }
   };

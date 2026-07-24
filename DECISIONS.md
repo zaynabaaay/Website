@@ -41,3 +41,34 @@ the end of every phase.
   hosting/permanence model, final seal colors, fleuron artwork, launch
   catalogue size, preview gate thresholds, Ada & June content, payment
   provider.
+
+### Bug fix: reduced motion made the opening ceremony disappear
+
+- **Reported:** with OS Reduce Motion on (Safari/iPad), tapping the demo
+  card made it vanish instead of crossfading to an opened state. Violated
+  §6: reduced motion must fade the closed state out and the opened state
+  in, landing on the same end state as the full ceremony.
+- **Root cause:** the demo card never had a real "opened" state. Under
+  full motion the cover just rotated away in 3D with nothing behind it;
+  under reduced motion it faded straight to `opacity: 0` with no content
+  to fade in. There was nothing to reveal in either mode — reduced motion
+  just made the gap obvious.
+- **Fix:** introduced a shared `.opening` / `.opening-cover` /
+  `.opening-panel` contract (`css/motion.css`, `js/motion.js`,
+  `index.html`). The cover is always in flow; the panel is absolutely
+  positioned underneath it and holds the actual opened content. Both
+  motion modes now toggle the same `is-open` state to the same end
+  values (cover `opacity: 0`, panel `opacity: 1`); only the transition
+  differs — full motion adds a `rotateY` hinge on the cover, reduced
+  motion is opacity-only. Verified with Playwright across all four
+  combinations (first-open/repeat-open × full-motion/reduced-motion):
+  end-state opacity, pointer-events, and ARIA (`aria-expanded`,
+  `aria-hidden`) all match between motion modes.
+- **Generalized on purpose:** renamed from card-specific classes
+  (`.demo-card`, `.demo-card-cover`) to a reusable component
+  (`.opening`, `.opening-cover`, `.opening-panel`, `.opening-trigger`)
+  so this is the one opening/closing mechanism every future ceremony
+  reuses — the product cover in Phase 3 and the preview cover in Phase 4
+  — rather than each one growing its own animation code and risking the
+  same bug again. The contract is documented directly above the rules in
+  `css/motion.css`.
