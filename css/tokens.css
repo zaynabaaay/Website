@@ -27,6 +27,13 @@
   --seal-5: #9B8AA3; /* provisional; tint, 3.00:1 vs paper */
   --seal-5-text: #7D6C85; /* provisional; 4.51:1 vs paper */
 
+  /* Per-product seal. One seal per product (§5). A product page and its
+     piece both set the matching class on <body>, so the two resolve to
+     the same pair and a piece can never be marked in a different colour
+     than the page that sells it. Defaults to seal-1 if unset. */
+  --product-seal: var(--seal-1);
+  --product-seal-text: var(--seal-1-text);
+
   /* Typography — provisional placeholder family; founder has not chosen
      a final typeface yet (STORIEL_BRIEF.md §9.1). Swap this one variable
      when they do. Three sizes only, per the brief. */
@@ -48,3 +55,10 @@
   --duration-open-compressed: 200ms;
   --duration-open-reduced: 200ms;
 }
+
+/* Seal assignment per product. Set one of these on <body>. */
+.seal-1-product { --product-seal: var(--seal-1); --product-seal-text: var(--seal-1-text); }
+.seal-2-product { --product-seal: var(--seal-2); --product-seal-text: var(--seal-2-text); }
+.seal-3-product { --product-seal: var(--seal-3); --product-seal-text: var(--seal-3-text); }
+.seal-4-product { --product-seal: var(--seal-4); --product-seal-text: var(--seal-4-text); }
+.seal-5-product { --product-seal: var(--seal-5); --product-seal-text: var(--seal-5-text); }

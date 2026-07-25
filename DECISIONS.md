@@ -406,3 +406,56 @@ them.
   confirmation (§9.7), plus everything the Phase 3 colophon invented.
   Fleuron artwork (§9.5), launch catalogue size (§9.6) and payment
   provider (§9.9) untouched.
+
+## The other three products (Save the Date, Wedding Invitation, Birthday Story)
+
+The founder asked for the remaining products to be built too. As with the
+Anniversary Scroll, **no facts were supplied**, so everything below —
+names, capacities, delivery windows, prices, preview gates, and all
+preview copy — **was written by the assistant and is unconfirmed**. The
+placeholder brackets are gone from the catalogue because these are now
+real pages, not because the names are settled.
+
+- **Refactor first, to avoid four diverging stylesheets.** `product.css`
+  and `piece.css` hardcoded `--seal-3`. They now use `--product-seal` /
+  `--product-seal-text`, set by a `.seal-N-product` class on `<body>`
+  (defined in `tokens.css`). A product page and its piece carry the same
+  class, so a piece can never end up marked in a different colour than
+  the page selling it. Adding a fifth product is now a class name, not a
+  new stylesheet.
+- **One seal each**, matching the catalogue thumbnails that already
+  existed: Save the Date seal-1 (rose), Wedding Invitation seal-2
+  (blue), Anniversary Scroll seal-3 (green), Birthday Story seal-4
+  (gold). Seal-5 (lilac) is unassigned and free for a fifth product.
+- **URLs** are plain words per §7: `/save-the-date/`,
+  `/wedding-invitation/`, `/anniversary/`, `/birthday/`. Note the brief's
+  example (`/wedding`) does not survive two wedding products, so the URL
+  follows the piece rather than the occasion.
+- **Proposed facts** (all invented, all needing a yes/no):
+  | product | capacity | duration | delivery | price | gate |
+  |---|---|---|---|---|---|
+  | Save the Date | 1 photograph, a date, a place | ~30 seconds | 3 days after proof | €40 | 1–2 of 4 |
+  | Wedding Invitation | 6 photographs, the day's details, a note | ~1 minute | 5 days after proof | €90 | 1–2 of 6 |
+  | Anniversary Scroll | 20 photographs, 12 passages, 1 letter | ~2 minutes | 5 days after proof | €140 | 1–3 of 9 |
+  | Birthday Story | 20 photographs, 12 passages, 1 letter | ~2 minutes | 5 days after proof | €140 | 1–3 of 9 |
+  All four carry the same ten-year hosting + offline-download promise
+  first proposed for the Anniversary Scroll. That commitment is now on
+  four pages instead of one, which raises the cost of getting it wrong.
+- **Sample preview content**, again assistant-written: Ada & June run
+  through the two wedding pieces and the anniversary as one continuous
+  couple (save the date → invitation → twenty-five years), which reads
+  coherently as a demo but is not a brand decision. The Birthday Story
+  uses a different person, Noor, at forty. All photographs are labelled
+  `[PHOTOGRAPH]` blocks.
+- **Verified across all four:** each product resolves its own seal (cover
+  tint and marked text), marked text passes 4.5:1 against paper
+  (4.50–4.54:1) and cover tints carry ink at 5.2–7.4:1, each preview
+  gates to its own threshold with the right "Preview: pages 1–N of M."
+  marker, each full piece renders every page with no gate card, the buy
+  buttons read the right prices, all four catalogue cards link out, the
+  occasion filter still narrows correctly, reduced motion reaches the
+  same end state, and no page reports console errors.
+- **Preview progress is stored per product** (`storiel:progress:<id>`).
+  Checked explicitly: reading the Birthday preview to page 3 does not
+  make Save the Date offer a resume, and returning to Birthday still
+  does.

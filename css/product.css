@@ -44,7 +44,7 @@
 .product-cover {
   width: min(300px, 70vw);
   aspect-ratio: 3 / 4;
-  background: var(--seal-3);
+  background: var(--product-seal);
   color: var(--color-ink);
   border-radius: 4px;
   display: flex;
@@ -61,7 +61,7 @@
 
 /* Seal-marked text: the -text shade, never the tint. */
 .seal-marked {
-  color: var(--seal-3-text);
+  color: var(--product-seal-text);
 }
 
 .personalizable-list {
@@ -75,7 +75,7 @@
 .personalizable-list li {
   margin-bottom: var(--space-1);
   padding-left: var(--space-2);
-  border-left: 3px solid var(--seal-3);
+  border-left: 3px solid var(--product-seal);
 }
 
 .colophon-block {
@@ -110,7 +110,7 @@
 .product-page .opening-cover,
 .product-page .opening-panel {
   aspect-ratio: 3 / 4;
-  background: var(--seal-3);
+  background: var(--product-seal);
   color: var(--color-ink);
   border-radius: 4px;
   display: flex;
@@ -126,7 +126,7 @@
 }
 
 .product-page .opening-panel {
-  background: color-mix(in srgb, var(--seal-3) 35%, var(--color-paper));
+  background: color-mix(in srgb, var(--product-seal) 35%, var(--color-paper));
 }
 
 /* The preview reads like a window into the piece, so it is wider than a

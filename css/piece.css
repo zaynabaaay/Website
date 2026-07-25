@@ -24,7 +24,7 @@
 .piece-year {
   font-size: var(--font-size-colophon);
   letter-spacing: 0.08em;
-  color: var(--seal-3-text);
+  color: var(--product-seal-text);
   margin: 0;
 }
 
@@ -42,7 +42,7 @@
 .piece-photo {
   width: min(280px, 65vw);
   aspect-ratio: 4 / 3;
-  background: var(--seal-3);
+  background: var(--product-seal);
   color: var(--color-ink);
   border-radius: 2px;
   display: flex;
