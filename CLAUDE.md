@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-Phase 1 (Foundations) is built. The site is **plain static HTML/CSS/JS** — no package manager, build step, framework, or test runner. This was a deliberate choice for a small, ceremony-light site that deploys straight to GitHub Pages; keep using plain HTML/CSS/JS unless a later phase (e.g. checkout in Phase 6) genuinely requires more.
+Phases 1–3 are built (Foundations, Catalogue, one product page). The site is **plain static HTML/CSS/JS** — no package manager, build step, framework, or test runner. This was a deliberate choice for a small, ceremony-light site that deploys straight to GitHub Pages; keep using plain HTML/CSS/JS unless a later phase (e.g. checkout in Phase 6) genuinely requires more.
 
 There is no build/lint/test command because there's no toolchain. To preview locally, serve the repo root with any static file server, e.g. `python3 -m http.server` and open `index.html`.
 
@@ -14,7 +14,9 @@ There is no build/lint/test command because there's no toolchain. To preview loc
 
 **Seal colors are tint/text pairs.** Working palette is C "Faded Celebration" (provisional until physical sampling). `--seal-N` is a display tint — backgrounds, thumbnails, blocks only; every tint fails WCAG contrast for text on paper. `--seal-N-text` is the same OKLCH hue darkened to pass 4.5:1 against paper and is the only seal form allowed on text. Tint backgrounds carry ink text (paper text fails on them). If a tint ever changes, re-derive its `-text` partner (OKLCH, hue/chroma held, highest lightness that passes 4.5:1) — never let the pair drift. If real fonts need visual verification, note that this environment's headless test browser has been observed to render distinct downloaded webfonts pixel-identically (a sandbox font-rasterization limitation, confirmed against working system-font rendering) even when `document.fonts.check()` and computed styles are correct — trust a real browser for the final visual call, not a headless screenshot here.
 
-`catalogue/index.html` (Phase 2) is the Catalogue index, served at `/catalogue/`. Errand zone: normal scrolling, no scroll-snap, no opening ceremony. Its four products are placeholder names/prices (bracketed, e.g. `[Save the Date]`) — see `DECISIONS.md` for the full list; don't treat them as real.
+`catalogue/index.html` (Phase 2) is the Catalogue index, served at `/catalogue/`. Errand zone: normal scrolling, no scroll-snap, no opening ceremony. Products whose names are bracketed (e.g. `[Save the Date]`) are placeholders — don't treat them as real.
+
+`anniversary/index.html` (Phase 3) is the one built product page, served at `/anniversary/` — storytelling zone, five spreads, colophon, `Buy — €140`, and the preview entry point. **Its colophon facts were written by the assistant, not the founder** (the founder delegated), so capacity, delivery time, the ten-year permanence commitment, the price, and the preview gate are all unconfirmed proposals — see `DECISIONS.md` before treating any of them as settled or reusing them for another product. Its preview cover reuses the shared `.opening` mechanism; its panel is a labelled placeholder until Phase 4 builds the real sandboxed preview.
 
 Structure:
 - `css/tokens.css` — design tokens (custom properties): color, type scale, spacing scale, motion durations/easing.
@@ -22,6 +24,7 @@ Structure:
 - `css/layout.css` — the two-zone layout primitives (`.zone-storytelling` / `.zone-errand`).
 - `css/motion.css` — fleuron rotation, opening-ceremony hinge animation, and the mandatory `prefers-reduced-motion` crossfade override.
 - `css/catalogue.css` — catalogue grid, filter chips, search input.
+- `css/product.css` — product-page nav, spread content, cover block, seal-marked personalizable list, buy button.
 - `js/motion.js` — the shared opening-ceremony mechanism (see the `.opening`/`.opening-cover`/`.opening-panel` contract documented at the top of `css/motion.css`). Tracks per-card "already opened" state in `localStorage` (key pattern `storiel:opened:<id>`, wrapped in try/catch since Safari can throw if site data/cookies are blocked) so the ceremony compresses from ~700ms to ~200ms after the first open; also handles Enter/Space activation for keyboard users. Reused as-is by any future opening ceremony (Phase 3 product cover, Phase 4 preview cover) — don't fork it per component.
 - `js/catalogue.js` — occasion-filter and search-substring logic for the catalogue grid.
 

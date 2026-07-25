@@ -259,3 +259,85 @@ files.
 - Verified: all five pairs pass in the live audit, demo card opens
   correctly with the new colors, catalogue thumbnails resolve to the C
   tints, no console errors on either page.
+
+## Phase 3 — One product page (Anniversary Scroll)
+
+**Read this section first if you are the founder.** The brief (§8 Phase 3)
+requires real product facts before building, and forbids inventing
+brand-level decisions. The founder chose the occasion ("anniversary")
+and explicitly delegated the rest ("You decide"). So **every fact below
+was written by the assistant, not supplied by the founder**, and each
+one needs a yes/no. They are on the live page as if real — not
+bracketed — because a page full of placeholders can't be judged as a
+product page. Nothing here is confirmed.
+
+- **Product:** Anniversary Scroll (dropped the placeholder brackets;
+  the name itself is now a proposal, not a placeholder).
+- **URL:** `/anniversary/` — plain-word URL per §7, matching the
+  occasion rather than the product name.
+- **Seal:** seal-3 (green), the same seal its catalogue thumbnail
+  already used, so the piece keeps one identity across pages.
+- **Proposed colophon**, written to the receipt test — "Holds up to
+  twenty photographs, twelve short passages, and one letter. Takes
+  about two minutes to read. Delivered as a private link within five
+  days of approving your proof. Hosted for ten years, with a copy you
+  can download and keep offline. €140." Each fact and why it was
+  chosen:
+  - *Capacity* — twenty photographs, twelve short passages, one
+    letter. Twelve passages reads as one per year of a longish
+    marriage without implying an exact anniversary number.
+  - *Duration* — about two minutes, carried over from the catalogue
+    entry so the two pages agree.
+  - *Delivery* — a private link within five days of proof approval.
+    Five days is a guess at studio turnaround; correct it to whatever
+    is actually true, since this is a promise the founder has to keep.
+  - *Permanence* — ten years of hosting plus a downloadable offline
+    copy. **This is a proposed answer to open question §9.3**, which
+    asked what "yours permanently" means concretely. The brief itself
+    recommended the offline-download option; ten years is the
+    assistant's number and is the single most consequential invention
+    on the page — it is a commitment with a real cost attached.
+  - *Price* — €140, promoted from the Phase 2 placeholder. Still needs
+    confirming as a real price (§9.2).
+- **Preview gate:** pages 1–3 of 9 — a proposed answer to §9.7 for this
+  product. The brief insists the threshold is chosen per product by the
+  founder and is never a default percentage, so this is a starting
+  point to react to, not a default.
+- **Structure:** five spreads in the storytelling zone (cover, what it
+  is, what you fill in, preview, colophon + Buy), using the existing
+  `.zone-storytelling`/`.spread` primitives — CSS scroll-snap, no JS
+  scroll hijacking.
+- **Seal-colour rule demonstrated** on the "What you fill in" spread:
+  the seal marks what is personalizable. The tint carries the cover
+  block; the `-text` shade carries the list text (4.54:1 against
+  paper); ink carries text on the tint (7.32:1). No bare tint carries
+  text anywhere.
+- **Preview entry reuses the shared `.opening` mechanism** rather than
+  a second implementation — the first real proof that the Phase 1
+  generalization holds up on a second component. Its panel is a clearly
+  labelled `[PREVIEW CONTENT PENDING — built in Phase 4]` plus the
+  "Preview: pages 1–3 of 9." marker; the real sandboxed preview is
+  Phase 4 work.
+- **Two honest dead ends on the page**, both stated in the page's own
+  words rather than hidden: the Buy button is disabled under the line
+  "Buying is not connected yet." (commerce is Phase 6), and the Studio
+  and Cart nav items are rendered but not focusable, since neither
+  destination exists yet. The nav is the mandated four items (fleuron,
+  Catalogue, Studio, Cart) so the errand zone stays one tap away from
+  the storytelling zone.
+- **Catalogue updated:** the Anniversary Scroll card now links through
+  to the product page and has lost its brackets; the other three keep
+  theirs. The page's own note now distinguishes the settled product
+  from the placeholders.
+- **Verified:** five spreads with `scroll-snap-type: y mandatory`, four
+  nav items, seal text 4.54:1 and cover 7.32:1 against their
+  backgrounds, `Buy — €140` renders and is disabled, the preview
+  opening reaches an identical end state in full motion and reduced
+  motion, Enter activates it from the keyboard, focus outlines are
+  visible, tab order runs fleuron → Catalogue → preview with no trap,
+  and the catalogue link lands on `/anniversary/`. No console errors.
+- Open questions after this phase: typeface (§9.1) still open;
+  everything invented above needs founder confirmation; fleuron artwork
+  (§9.5), launch catalogue size (§9.6), Ada & June content (§9.8) and
+  payment provider (§9.9) untouched. Seal colours remain provisional
+  pending physical sampling.

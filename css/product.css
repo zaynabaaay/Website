@@ -1,0 +1,135 @@
+/* Product page — storytelling zone. Paginated spreads, one object per
+   view, center spine. See STORIEL_BRIEF.md §3, §8 Phase 3.
+
+   Seal-color rule (STORIEL_BRIEF.md §5): the seal marks everything
+   personalizable. This page uses one seal per product — tint for blocks
+   and covers, -text shade for any seal-colored text. A bare tint never
+   carries text; tint backgrounds carry ink. */
+
+/* Nav — exactly four items, per the brief. Fixed so the errand zone is
+   reachable in one tap from anywhere in the storytelling zone. */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-paper);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+  font-size: var(--font-size-colophon);
+}
+
+.site-nav a {
+  color: var(--color-ink);
+}
+
+/* Nav items whose destination is not built yet. Not focusable — there is
+   nothing to activate — and marked in the page's own words, not styled
+   to look enabled. */
+.nav-pending {
+  opacity: 0.45;
+}
+
+.product-page .spread {
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+/* The piece's cover block: seal tint, ink text. Stands in for artwork
+   that does not exist yet. */
+.product-cover {
+  width: min(300px, 70vw);
+  aspect-ratio: 3 / 4;
+  background: var(--seal-3);
+  color: var(--color-ink);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+}
+
+.product-title {
+  margin-bottom: var(--space-1);
+}
+
+/* Seal-marked text: the -text shade, never the tint. */
+.seal-marked {
+  color: var(--seal-3-text);
+}
+
+.personalizable-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.personalizable-list li {
+  margin-bottom: var(--space-1);
+  padding-left: var(--space-2);
+  border-left: 3px solid var(--seal-3);
+}
+
+.colophon-block {
+  max-width: 30rem;
+  text-align: left;
+}
+
+.buy {
+  font: inherit;
+  font-size: var(--font-size-body);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: 1px solid var(--color-ink);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.buy[disabled] {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* Preview entry point. Reuses the shared .opening mechanism rather than
+   inventing a second one — see the contract at the top of css/motion.css.
+   The default .opening width suits a small card; a product cover is
+   larger. */
+.product-page .opening {
+  width: min(300px, 70vw);
+}
+
+.product-page .opening-cover,
+.product-page .opening-panel {
+  aspect-ratio: 3 / 4;
+  background: var(--seal-3);
+  color: var(--color-ink);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+}
+
+.product-page .opening-cover {
+  cursor: pointer;
+}
+
+.product-page .opening-panel {
+  background: color-mix(in srgb, var(--seal-3) 35%, var(--color-paper));
+}
+
+.spread-hint {
+  margin-top: var(--space-3);
+  opacity: 0.6;
+}
