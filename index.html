@@ -3,278 +3,66 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Storiel — Foundations (Phase 1)</title>
-<meta name="description" content="Storiel design tokens, type, spacing, motion, and two-zone layout physics.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
+<title>Storiel — small interactive keepsakes and invitations</title>
+<meta name="description" content="Storiel makes small interactive keepsakes and invitations for weddings, anniversaries and birthdays. Everything is closed until you open it.">
 <link rel="stylesheet" href="css/tokens.css?v=4">
 <link rel="stylesheet" href="css/base.css?v=2">
 <link rel="stylesheet" href="css/layout.css?v=2">
 <link rel="stylesheet" href="css/motion.css?v=2">
-<style>
-  .page { max-width: 880px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
-  section { margin-bottom: var(--space-5); }
-  .swatches { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-  .swatch { width: 120px; }
-  .swatch-color { height: 80px; border-radius: 2px; }
-  .swatch code { font-size: var(--font-size-colophon); display: block; margin-top: var(--space-1); }
-  .type-row { margin-bottom: var(--space-2); }
-  .space-row { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1); }
-  .space-bar { background: var(--seal-1); height: 12px; }
-  .fleuron-demo { font-size: 2rem; padding: var(--space-2); border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); display: inline-flex; }
-  /* Palette C tints are light, so card text is ink, not paper — paper on
-     a tint fails contrast. Seal-colored text uses the -text shades only. */
-  .opening-cover { background: var(--seal-2); color: var(--color-ink); border-radius: 4px; padding: var(--space-3); cursor: pointer; }
-  .opening-panel { background: var(--seal-4); color: var(--color-ink); border-radius: 4px; padding: var(--space-3); }
-  .storytelling-demo { height: 60vh; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
-  .storytelling-demo .spread:nth-child(1) { background: color-mix(in srgb, var(--seal-1) 12%, var(--color-paper)); }
-  .storytelling-demo .spread:nth-child(2) { background: color-mix(in srgb, var(--seal-3) 12%, var(--color-paper)); }
-  .storytelling-demo .spread:nth-child(3) { background: color-mix(in srgb, var(--seal-4) 12%, var(--color-paper)); }
-  .errand-demo { height: 30vh; overflow-y: auto; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
-  .provisional-note { font-size: var(--font-size-colophon); opacity: 0.7; }
-  .reset-demo { font: inherit; font-size: var(--font-size-colophon); background: none; border: none; padding: 0; margin-top: var(--space-1); color: var(--color-ink); text-decoration: underline; cursor: pointer; }
-  .home-links { margin-bottom: var(--space-2); }
-  .compare-toggle { display: flex; flex-wrap: wrap; gap: var(--space-1); margin: var(--space-2) 0 var(--space-3); }
-  .compare-chip { font: inherit; font-size: var(--font-size-colophon); padding: var(--space-1) var(--space-2); border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent); border-radius: 999px; background: var(--color-paper); color: var(--color-ink); cursor: pointer; }
-  .compare-chip.is-active { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
-  h3 { font-size: var(--font-size-body); margin: var(--space-3) 0 var(--space-1); }
-  .palette-slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-2); }
-  .palette-slot { border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent); border-radius: 4px; padding: var(--space-1); }
-  .palette-thumb { aspect-ratio: 3 / 4; border-radius: 2px; margin-bottom: var(--space-1); }
-  .palette-text-sample { margin: 0; }
-  .contrast-label { font-family: monospace; font-size: 0.75rem; margin: var(--space-1) 0 0; }
-  .contrast-fail { color: #B00020; font-weight: 600; }
-  .font-sample-row { margin-bottom: var(--space-2); }
-  :root.font-preview-fraunces { font-optical-sizing: none; font-variation-settings: 'opsz' 9; }
-</style>
+<link rel="stylesheet" href="css/product.css?v=3">
+<link rel="stylesheet" href="css/home.css?v=1">
 </head>
 <body>
-<div class="page">
 
-  <header>
-    <p class="colophon provisional-note">Phase 1 — Foundations. This is a living style page, not the homepage. Typeface below is a provisional placeholder (no font has been chosen yet — see STORIEL_BRIEF.md §9.1).</p>
-    <h1><i class="fleuron" aria-hidden="true">&#10087;</i> Storiel — Foundations</h1>
-    <p class="colophon home-links"><a href="catalogue/">Catalogue &rarr;</a> (Phase 2)</p>
-  </header>
+<nav class="site-nav" aria-label="Main">
+  <a href="./" aria-label="Storiel — home"><span class="fleuron" aria-hidden="true">&#10087;</span></a>
+  <a href="catalogue/">Catalogue</a>
+  <span class="nav-pending">Studio</span>
+  <span class="nav-pending">Cart</span>
+</nav>
 
-  <section>
-    <h2>Color</h2>
-    <p class="colophon provisional-note">All values are provisional and will be replaced by physically sampled hues. Seal colors are shown as tint/text pairs in the next section.</p>
-    <div class="swatches">
-      <div class="swatch">
-        <div class="swatch-color" style="background: var(--color-paper); border: 1px solid #ddd;"></div>
-        <code>paper #FAF7F2</code>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background: var(--color-ink);"></div>
-        <code>ink #26211C</code>
-      </div>
-    </div>
+<div class="zone-storytelling home">
+
+  <section class="spread">
+    <span class="fleuron" aria-hidden="true">&#10087;</span>
+    <h1 class="home-statement">Everything here is closed until you open it.</h1>
+    <p class="home-sub">Storiel makes small interactive keepsakes and invitations, one at a time.</p>
+    <p class="colophon spread-hint">Scroll to read on.</p>
   </section>
 
-  <section>
-    <h2>Seal palette — working set (palette C, provisional)</h2>
-    <p class="colophon provisional-note">Palette C "Faded Celebration" is adopted as the working seal palette, still provisional until physical sampling (STORIEL_BRIEF.md §9.4). Each seal is a pair: a display tint (blocks, thumbnails, backgrounds — never text) and a text shade — the same OKLCH hue darkened until it passes WCAG AA 4.5:1 against paper. Ratios below are computed live from the token values, so this display cannot drift from <code>css/tokens.css</code>.</p>
-
-    <div class="palette-slots">
-      <div class="palette-slot" data-seal="1">
-        <div class="palette-thumb" style="background: var(--seal-1);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--seal-1-text);">Text shade, seal-1.</p>
-        <p class="contrast-label" id="seal-1-contrast"></p>
-      </div>
-      <div class="palette-slot" data-seal="2">
-        <div class="palette-thumb" style="background: var(--seal-2);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--seal-2-text);">Text shade, seal-2.</p>
-        <p class="contrast-label" id="seal-2-contrast"></p>
-      </div>
-      <div class="palette-slot" data-seal="3">
-        <div class="palette-thumb" style="background: var(--seal-3);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--seal-3-text);">Text shade, seal-3.</p>
-        <p class="contrast-label" id="seal-3-contrast"></p>
-      </div>
-      <div class="palette-slot" data-seal="4">
-        <div class="palette-thumb" style="background: var(--seal-4);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--seal-4-text);">Text shade, seal-4.</p>
-        <p class="contrast-label" id="seal-4-contrast"></p>
-      </div>
-      <div class="palette-slot" data-seal="5">
-        <div class="palette-thumb" style="background: var(--seal-5);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--seal-5-text);">Text shade, seal-5.</p>
-        <p class="contrast-label" id="seal-5-contrast"></p>
-      </div>
-    </div>
-    <p class="colophon provisional-note">The opening-ceremony demo card further down this page uses the seal-2 tint for its cover and the seal-4 tint for its panel (with ink text — the tints are too light to carry paper text). The catalogue thumbnails use tints 1–4.</p>
-  </section>
-
-  <section>
-    <h2>Type</h2>
-    <p class="colophon provisional-note">One serif family, three sizes. Family shown here (Source Serif 4) is a stand-in.</p>
-    <div class="type-row" style="font-size: var(--font-size-heading);">Modest heading</div>
-    <div class="type-row" style="font-size: var(--font-size-body);">Body text, set at a comfortable reading size, with <em>real italics</em> rather than a synthesized slant.</div>
-    <div class="type-row colophon">Small / colophon size — capacity, duration, delivery, permanence, price.</div>
-  </section>
-
-  <section>
-    <h2>Typeface comparison</h2>
-    <p class="colophon provisional-note">The three candidates from STORIEL_BRIEF.md §5 / §9.1. Choosing one previews it live across this entire page — this section, the type sizes above, the colophon captions throughout, and the opening-ceremony demo card further down — without saving anything; the token file keeps the placeholder until a typeface is actually chosen. Fraunces is shown at its low optical size, per the brief's specific interest in that variant.</p>
-
-    <div class="compare-toggle" id="font-toggle" role="group" aria-label="Choose a typeface to preview">
-      <button type="button" class="compare-chip is-active" data-font="current">Current (provisional)</button>
-      <button type="button" class="compare-chip" data-font="source-serif">Source Serif 4</button>
-      <button type="button" class="compare-chip" data-font="fraunces">Fraunces (low optical size)</button>
-      <button type="button" class="compare-chip" data-font="newsreader">Newsreader</button>
-    </div>
-
-    <div class="font-sample">
-      <div class="font-sample-row" style="font-size: var(--font-size-heading);">Modest heading</div>
-      <div class="font-sample-row" style="font-size: var(--font-size-body);">Body text, set at a comfortable reading size, with <em>real italics</em> rather than a synthesized slant.</div>
-      <div class="font-sample-row colophon">Small / colophon size — capacity, duration, delivery, permanence, price.</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Spacing</h2>
-    <div class="space-row"><div class="space-bar" style="width: var(--space-1);"></div><code>--space-1: 8px</code></div>
-    <div class="space-row"><div class="space-bar" style="width: var(--space-2);"></div><code>--space-2: 16px</code></div>
-    <div class="space-row"><div class="space-bar" style="width: var(--space-3);"></div><code>--space-3: 32px</code></div>
-    <div class="space-row"><div class="space-bar" style="width: var(--space-4);"></div><code>--space-4: 64px</code></div>
-    <div class="space-row"><div class="space-bar" style="width: var(--space-5);"></div><code>--space-5: 128px</code></div>
-  </section>
-
-  <section>
-    <h2>The fleuron (placeholder)</h2>
-    <p class="colophon provisional-note">Final artwork does not exist yet (STORIEL_BRIEF.md §9.5). This is a plain glyph standing in for it. Hover or focus it — it turns a quarter turn.</p>
-    <a href="#" class="openable fleuron-demo" aria-label="Open (placeholder)"><span class="fleuron" aria-hidden="true">&#10087;</span></a>
-  </section>
-
-  <section>
-    <h2>Opening ceremony</h2>
-    <p class="colophon">Click the card to open it. Reload the page and open it again — the second time settles faster. With reduced motion enabled in your OS, the lift becomes a plain crossfade — same end state, no ceremony.</p>
-    <div class="opening" data-opening-id="foundations-demo">
-      <div class="opening-cover opening-trigger openable" tabindex="0" role="button" aria-expanded="false" aria-label="Open demo card">
+  <section class="spread">
+    <div class="opening" data-opening-id="home-demonstration">
+      <div class="opening-cover opening-trigger openable" tabindex="0" role="button" aria-expanded="false" aria-label="Open">
         <span class="fleuron" aria-hidden="true">&#10087;</span>
-        <p>A small world. Click to open.</p>
+        <p>A small world.</p>
       </div>
       <div class="opening-panel" aria-hidden="true">
         <span class="fleuron" aria-hidden="true">&#10087;</span>
-        <p>Open. This is what was inside.</p>
+        <p>Open.</p>
       </div>
     </div>
-    <p class="colophon"><button type="button" id="reset-demo" class="reset-demo">Reset this demo — see the full-length opening again</button></p>
+    <p class="colophon">This is what every piece does. Yours holds your own photographs and writing.</p>
   </section>
 
-  <section>
-    <h2>Storytelling zone physics</h2>
-    <p class="colophon">Paginated spreads, hard settle, one object per view. Scroll inside the box.</p>
-    <div class="storytelling-demo zone-storytelling">
-      <div class="spread"><p>Spread one.</p></div>
-      <div class="spread"><p>Spread two.</p></div>
-      <div class="spread"><p>Spread three.</p></div>
-    </div>
+  <section class="spread">
+    <h2>What has happened</h2>
+    <ul class="toc">
+      <li><a href="save-the-date/">A date has been set.</a></li>
+      <li><a href="wedding-invitation/">Someone is getting married.</a></li>
+      <li><a href="anniversary/">Two people have been together for years.</a></li>
+      <li><a href="birthday/">Someone is having a birthday.</a></li>
+    </ul>
   </section>
 
-  <section>
-    <h2>Errand zone physics</h2>
-    <p class="colophon">Normal scrolling, conventional, zero ceremony. Scroll inside the box.</p>
-    <div class="errand-demo zone-errand">
-      <div class="row">Row one</div>
-      <div class="row">Row two</div>
-      <div class="row">Row three</div>
-      <div class="row">Row four</div>
-      <div class="row">Row five</div>
-      <div class="row">Row six</div>
-      <div class="row">Row seven</div>
-      <div class="row">Row eight</div>
-    </div>
+  <section class="spread">
+    <h2>All of it</h2>
+    <p class="home-catalogue-link"><a href="catalogue/">Catalogue</a></p>
+    <p class="colophon">Four pieces. Prices, durations, and what each one holds.</p>
   </section>
 
 </div>
+
 <script src="js/motion.js?v=2"></script>
-<script>
-  // Demo-only: lets a reviewer replay the full-length opening on this
-  // style-guide page. Not part of the shared opening-ceremony mechanism —
-  // real product/preview covers should not offer this.
-  document.getElementById('reset-demo').addEventListener('click', () => {
-    try {
-      localStorage.removeItem('storiel:opened:foundations-demo');
-    } catch (err) {
-      // ignore — see js/motion.js
-    }
-    location.reload();
-  });
-</script>
-<script>
-  // Seal-pair audit — Phase 1 review tool, not part of the site itself.
-  // Reads the live token values (never a hardcoded copy) and prints each
-  // pair's contrast against paper, so tokens.css and this display can't
-  // silently disagree. Text shades must clear 4.5:1 (AA normal text).
-  (function () {
-    const rootStyle = getComputedStyle(document.documentElement);
-
-    function srgbToLinear(c) {
-      const s = c / 255;
-      return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
-    }
-    function luminance(rgb) {
-      const [r, g, b] = rgb.map(srgbToLinear);
-      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    }
-    function parseColor(value) {
-      // tokens are hex, but parse via canvas-free normalization: #RRGGBB only
-      const h = value.trim().replace('#', '');
-      return [0, 2, 4].map((i) => parseInt(h.substring(i, i + 2), 16));
-    }
-    function contrastRatio(a, b) {
-      const lA = luminance(parseColor(a));
-      const lB = luminance(parseColor(b));
-      return (Math.max(lA, lB) + 0.05) / (Math.min(lA, lB) + 0.05);
-    }
-
-    const paper = rootStyle.getPropertyValue('--color-paper').trim();
-
-    for (let slot = 1; slot <= 5; slot += 1) {
-      const tint = rootStyle.getPropertyValue(`--seal-${slot}`).trim();
-      const text = rootStyle.getPropertyValue(`--seal-${slot}-text`).trim();
-      const label = document.getElementById(`seal-${slot}-contrast`);
-      if (!label || !tint || !text) continue;
-      const tintRatio = contrastRatio(tint, paper);
-      const textRatio = contrastRatio(text, paper);
-      const passes = textRatio >= 4.5;
-      label.textContent =
-        `tint ${tint} ${tintRatio.toFixed(2)}:1 · text ${text} ${textRatio.toFixed(2)}:1 ` +
-        (passes ? 'PASS' : 'FAIL (below 4.5:1 AA)');
-      label.classList.toggle('contrast-fail', !passes);
-    }
-  })();
-</script>
-<script>
-  // Typeface comparison — Phase 1 review tool, not part of the site itself.
-  // Previews candidates by overriding --font-serif on :root, which cascades
-  // to every element on the page (base.css sets it once, on body).
-  (function () {
-    const root = document.documentElement;
-    const FONT_STACKS = {
-      'source-serif': "'Source Serif 4', Georgia, serif",
-      fraunces: "'Fraunces', Georgia, serif",
-      newsreader: "'Newsreader', Georgia, serif",
-    };
-
-    const fontButtons = Array.from(document.querySelectorAll('#font-toggle .compare-chip'));
-
-    fontButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        fontButtons.forEach((b) => b.classList.toggle('is-active', b === button));
-        const key = button.dataset.font;
-        root.classList.toggle('font-preview-fraunces', key === 'fraunces');
-        if (key === 'current' || !FONT_STACKS[key]) {
-          root.style.removeProperty('--font-serif');
-        } else {
-          root.style.setProperty('--font-serif', FONT_STACKS[key]);
-        }
-      });
-    });
-  })();
-</script>
+<script src="js/home.js?v=1"></script>
 </body>
 </html>

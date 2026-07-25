@@ -1,0 +1,77 @@
+/* Homepage — storytelling zone. Assembled from components already proven
+   in Phases 1–4; nothing new is invented here. See STORIEL_BRIEF.md §8
+   Phase 5. */
+
+.home .spread {
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+.home-statement {
+  font-size: var(--font-size-heading);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.home-sub {
+  max-width: 26rem;
+}
+
+/* Table of Contents: sentence-nav. Plain verifiable statements, no
+   adjectives (§4). The ordinary category name lives in the URL, not
+   the sentence. */
+.toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.toc li {
+  margin-bottom: var(--space-2);
+}
+
+.toc a {
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 25%, transparent);
+  padding-bottom: 2px;
+}
+
+.toc a:hover,
+.toc a:focus-visible {
+  border-bottom-color: var(--color-ink);
+}
+
+/* The self-opening demonstration. Uses the shared .opening contract; the
+   only difference is that js/home.js triggers it once, unattended, on a
+   visitor's first arrival. */
+.home .opening {
+  width: min(300px, 70vw);
+}
+
+.home .opening-cover,
+.home .opening-panel {
+  aspect-ratio: 3 / 4;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  color: var(--color-ink);
+}
+
+.home .opening-cover {
+  background: var(--seal-5);
+  cursor: pointer;
+}
+
+.home .opening-panel {
+  background: color-mix(in srgb, var(--seal-5) 35%, var(--color-paper));
+}
+
+.home-catalogue-link {
+  font-size: var(--font-size-body);
+}

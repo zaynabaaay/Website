@@ -459,3 +459,60 @@ real pages, not because the names are settled.
   Checked explicitly: reading the Birthday preview to page 3 does not
   make Save the Date offer a resume, and returning to Birthday still
   does.
+
+## Phase 5 — Homepage
+
+Built last and assembled from components already proven in Phases 1–4,
+per §8. Nothing new was invented for it: the demonstration is the same
+`.opening` mechanism, the spreads are the same storytelling-zone
+primitives, the nav is the same four items.
+
+- **The style page moved rather than being deleted.** `index.html` is now
+  the real homepage; the Phase 1 living style page is at `/foundations/`.
+  It still carries the seal-pair audit and the typeface comparison, and
+  the typeface question (§9.1) is still open, so those tools are still
+  needed. Its relative paths were rewritten for the new depth and its
+  header now links back to Home and Catalogue.
+- **Opening statement:** "Everything here is closed until you open it."
+  It states the governing verb as a plain fact rather than describing the
+  brand, and it passes the receipt test. Subline: "Storiel makes small
+  interactive keepsakes and invitations, one at a time."
+- **The self-opening demonstration plays on scroll, not on a timer.**
+  First implementation fired it ~900ms after page load; the
+  demonstration sits on the second spread, below the fold, so it would
+  have played to an empty screen — and since it only ever plays once,
+  the visitor would have missed the one thing the homepage exists to
+  show. It now waits for an IntersectionObserver at 60% visibility, then
+  plays after a short beat. Falls back to the timer if
+  IntersectionObserver is missing.
+- **"Plays once" is judged by the key `js/motion.js` already writes**
+  (`storiel:opened:home-demonstration`), so opening it by hand on a first
+  visit also counts, and it never plays at the same person twice. On
+  return it stays closed and is simply openable, already compressed to
+  200ms. If storage is blocked the demonstration plays — the safe
+  direction to fail in.
+- **Reduced motion** needed no branch in the JS: the same `.is-open`
+  state crossfades in CSS. Only the delay is trimmed, so someone who
+  asked for less movement does not sit watching a still card.
+- **Table of Contents sentences**, plain and verifiable, no adjectives
+  (§4), with the ordinary category name in the URL rather than the
+  sentence:
+  - "A date has been set." → `/save-the-date/`
+  - "Someone is getting married." → `/wedding-invitation/`
+  - "Two people have been together for years." → `/anniversary/`
+  - "Someone is having a birthday." → `/birthday/`
+  There is no memorial sentence because there is no memorial product;
+  the brief's hard case ("Someone has died.") is waiting on a piece to
+  point at, and inventing one was out of scope.
+- **The demonstration uses seal-5**, the one seal no product claimed, so
+  the homepage does not appear to belong to any single piece.
+- **Verified:** stays closed while off-screen, plays once when scrolled
+  to, does not self-play on return but still opens on click, reduced
+  motion reaches the same end state, four spreads with scroll-snap, four
+  nav items, all seven internal links resolve, the moved foundations page
+  still renders its five contrast pairs and four typeface chips with no
+  errors, and no console errors anywhere.
+- Open questions unchanged: typeface (§9.1), real preview content
+  (§9.8), fleuron artwork (§9.5), payment provider (§9.9), plus every
+  colophon fact and price the assistant invented. Phase 6 (commerce and
+  the personalization flow) is the only phase left.
