@@ -341,3 +341,68 @@ product page. Nothing here is confirmed.
   (§9.5), launch catalogue size (§9.6), Ada & June content (§9.8) and
   payment provider (§9.9) untouched. Seal colours remain provisional
   pending physical sampling.
+
+## Phase 4 — One real preview
+
+**The content in this preview is sample text written by the assistant,
+not founder-authored.** The brief (§8 Phase 4) asks for authored Ada &
+June content and says to pause and request it if missing; it was
+missing, the founder said only "Continue", so rather than block with
+nothing delivered the mechanism was built against sample copy. §9.8 is
+therefore still open. The story text and the placeholder photographs
+are meant to be replaced wholesale — the mechanism does not depend on
+them.
+
+- **One codebase, two modes** (§7's hard requirement that a preview can
+  never drift from the real product). `anniversary/piece/` *is* the
+  Anniversary Scroll — nine pages. It reads `?gate=N` from its own URL:
+  with the parameter it renders the first N pages plus the gate card;
+  without it, all nine and no gate card at all. There is no separate
+  "preview build" to keep in sync, and the purchased piece is this same
+  page loaded without the parameter. Verified both modes: 9 pages / no
+  gate card, and 3 pages / "Preview: pages 1–3 of 9."
+- **Gate threshold: 3 of 9**, taken from the Phase 3 proposal. Set per
+  product as `data-preview-gate` on the product page, never a computed
+  percentage, per §7. Still awaiting founder confirmation (§9.7).
+- **Sandboxing and where state lives.** The iframe is
+  `sandbox="allow-scripts"` *without* `allow-same-origin`, so the piece
+  runs on an opaque origin and cannot touch the parent's DOM or storage
+  — confirmed by a `SecurityError` when the parent reaches into
+  `contentWindow`. A consequence worth recording: `localStorage` is
+  therefore unavailable *inside* the piece, so all persistence lives in
+  the parent. The piece reports the reader's furthest page by
+  `postMessage`; `js/preview.js` stores it and passes `?start=N` back on
+  return. Because the origin is opaque, `event.origin` is the string
+  `"null"`, so messages are identified by comparing
+  `event.source === frame.contentWindow` rather than by origin.
+- **Resume and restart** are both offered on return, not just one: the
+  panel shows "You reached page N." with *Resume* and *Start again*.
+  Restart resets stored progress rather than merely scrolling to the
+  top. Verified both paths (`piece/?gate=3&start=3` vs `piece/?gate=3`
+  with progress reset to 1).
+- **Compressed re-open works on the preview cover** through the shared
+  mechanism with no extra code: 0.7s on first open, 0.2s on return.
+  Reduced motion reaches the identical end state (cover 0, panel 1).
+- **The iframe is loaded lazily** — `src` is empty until the cover is
+  actually opened — so visitors who never open the preview pay nothing
+  for it. This is deliberate against the §7 performance budget.
+- **`js/preview.js` does not re-implement opening.** It watches for
+  `.is-open` via `MutationObserver` instead of binding a second handler
+  to the same trigger, keeping `js/motion.js` the only thing that owns
+  open/close state.
+- **Photographs do not exist**, so the piece renders labelled
+  `[PHOTOGRAPH]` blocks in the seal tint rather than decorative shapes
+  pretending to be images.
+- **No closing sentence**, per §4: the gate card carries the fleuron and
+  the "Preview: pages 1–3 of 9." marker and nothing else. The preview
+  simply ends.
+- **Verified:** both piece modes, lazy load, sandbox isolation, gating
+  inside the frame, progress persisted to the parent on scroll,
+  resume/restart, compressed re-open, reduced-motion end state, tab
+  order (fleuron → Catalogue → preview cover → iframe, no trap), no
+  console errors.
+- Open questions after this phase: real Ada & June content (§9.8, the
+  sample above is a stand-in), typeface (§9.1), preview gate
+  confirmation (§9.7), plus everything the Phase 3 colophon invented.
+  Fleuron artwork (§9.5), launch catalogue size (§9.6) and payment
+  provider (§9.9) untouched.

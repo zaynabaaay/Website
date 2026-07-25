@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../css/base.css?v=2">
 <link rel="stylesheet" href="../css/layout.css?v=2">
 <link rel="stylesheet" href="../css/motion.css?v=2">
-<link rel="stylesheet" href="../css/product.css?v=1">
+<link rel="stylesheet" href="../css/product.css?v=2">
 </head>
 <body>
 
@@ -50,14 +50,25 @@
 
   <section class="spread">
     <h2>Read part of it</h2>
-    <div class="opening" data-opening-id="anniversary-preview">
+    <div class="opening preview" data-opening-id="anniversary-preview" data-preview-id="anniversary" data-preview-gate="3">
       <div class="opening-cover opening-trigger openable" tabindex="0" role="button" aria-expanded="false" aria-label="Open the preview">
         <span class="fleuron" aria-hidden="true">&#10087;</span>
         <p>Open the preview</p>
       </div>
       <div class="opening-panel" aria-hidden="true">
-        <p class="colophon">Preview: pages 1&ndash;3 of 9.</p>
-        <p class="colophon">[PREVIEW CONTENT PENDING &mdash; built in Phase 4]</p>
+        <iframe
+          id="preview-frame"
+          class="preview-frame"
+          title="Preview of the Anniversary Scroll"
+          sandbox="allow-scripts"
+          referrerpolicy="no-referrer"></iframe>
+        <div class="preview-resume" id="preview-resume" hidden>
+          <p class="colophon" id="preview-resume-text"></p>
+          <p class="preview-resume-actions">
+            <button type="button" class="preview-btn" id="preview-resume-btn">Resume</button>
+            <button type="button" class="preview-btn" id="preview-restart-btn">Start again</button>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -74,5 +85,6 @@
 </div>
 
 <script src="../js/motion.js?v=2"></script>
+<script src="../js/preview.js?v=1"></script>
 </body>
 </html>

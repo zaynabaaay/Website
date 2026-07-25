@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository state
 
-Phases 1–3 are built (Foundations, Catalogue, one product page). The site is **plain static HTML/CSS/JS** — no package manager, build step, framework, or test runner. This was a deliberate choice for a small, ceremony-light site that deploys straight to GitHub Pages; keep using plain HTML/CSS/JS unless a later phase (e.g. checkout in Phase 6) genuinely requires more.
+Phases 1–4 are built (Foundations, Catalogue, one product page, one real preview). The site is **plain static HTML/CSS/JS** — no package manager, build step, framework, or test runner. This was a deliberate choice for a small, ceremony-light site that deploys straight to GitHub Pages; keep using plain HTML/CSS/JS unless a later phase (e.g. checkout in Phase 6) genuinely requires more.
 
 There is no build/lint/test command because there's no toolchain. To preview locally, serve the repo root with any static file server, e.g. `python3 -m http.server` and open `index.html`.
 
@@ -16,7 +16,11 @@ There is no build/lint/test command because there's no toolchain. To preview loc
 
 `catalogue/index.html` (Phase 2) is the Catalogue index, served at `/catalogue/`. Errand zone: normal scrolling, no scroll-snap, no opening ceremony. Products whose names are bracketed (e.g. `[Save the Date]`) are placeholders — don't treat them as real.
 
-`anniversary/index.html` (Phase 3) is the one built product page, served at `/anniversary/` — storytelling zone, five spreads, colophon, `Buy — €140`, and the preview entry point. **Its colophon facts were written by the assistant, not the founder** (the founder delegated), so capacity, delivery time, the ten-year permanence commitment, the price, and the preview gate are all unconfirmed proposals — see `DECISIONS.md` before treating any of them as settled or reusing them for another product. Its preview cover reuses the shared `.opening` mechanism; its panel is a labelled placeholder until Phase 4 builds the real sandboxed preview.
+`anniversary/index.html` (Phase 3) is the one built product page, served at `/anniversary/` — storytelling zone, five spreads, colophon, `Buy — €140`, and the preview entry point. **Its colophon facts were written by the assistant, not the founder** (the founder delegated), so capacity, delivery time, the ten-year permanence commitment, the price, and the preview gate are all unconfirmed proposals — see `DECISIONS.md` before treating any of them as settled or reusing them for another product. Its preview cover reuses the shared `.opening` mechanism.
+
+`anniversary/piece/` (Phase 4) **is** the Anniversary Scroll — the actual product build, nine pages. It serves both the preview and (eventually) the purchased piece from one codebase, which §7 requires so the two can never drift: `?gate=N` renders the first N pages plus the gate card, and with no parameter it renders all nine with no gate card. Its story text and `[PHOTOGRAPH]` blocks are **assistant-written sample content**, not founder-authored (§9.8 is still open) — replace them wholesale; nothing in the mechanism depends on them.
+
+**The preview iframe is sandboxed without `allow-same-origin`**, so the piece runs on an opaque origin. Two consequences that will bite if forgotten: `localStorage` is unavailable *inside* the piece, so the parent (`js/preview.js`) owns all progress state and passes `?start=N` back in on return; and `event.origin` is the string `"null"` for its messages, so postMessage senders are identified by `event.source === frame.contentWindow`, never by origin. The iframe's `src` stays empty until the cover is opened, so unopened previews cost nothing.
 
 Structure:
 - `css/tokens.css` — design tokens (custom properties): color, type scale, spacing scale, motion durations/easing.
@@ -27,6 +31,8 @@ Structure:
 - `css/product.css` — product-page nav, spread content, cover block, seal-marked personalizable list, buy button.
 - `js/motion.js` — the shared opening-ceremony mechanism (see the `.opening`/`.opening-cover`/`.opening-panel` contract documented at the top of `css/motion.css`). Tracks per-card "already opened" state in `localStorage` (key pattern `storiel:opened:<id>`, wrapped in try/catch since Safari can throw if site data/cookies are blocked) so the ceremony compresses from ~700ms to ~200ms after the first open; also handles Enter/Space activation for keyboard users. Reused as-is by any future opening ceremony (Phase 3 product cover, Phase 4 preview cover) — don't fork it per component.
 - `js/catalogue.js` — occasion-filter and search-substring logic for the catalogue grid.
+- `css/piece.css` / `js/piece.js` — the piece itself: page layout, `?gate=N` gating, `?start=N` resume, and progress reporting up to the parent by postMessage.
+- `js/preview.js` — parent-side preview controller: lazy iframe load, progress persistence, resume/restart. Watches `.is-open` via MutationObserver rather than binding its own trigger handler, so `js/motion.js` stays the only owner of open/close.
 
 ## The governing document
 

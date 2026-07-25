@@ -129,6 +129,68 @@
   background: color-mix(in srgb, var(--seal-3) 35%, var(--color-paper));
 }
 
+/* The preview reads like a window into the piece, so it is wider than a
+   plain card and its panel holds an iframe edge to edge. */
+.product-page .opening.preview {
+  width: min(420px, 88vw);
+}
+
+.product-page .opening.preview .opening-cover,
+.product-page .opening.preview .opening-panel {
+  aspect-ratio: 3 / 4;
+}
+
+.product-page .opening.preview .opening-panel {
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-paper);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
+}
+
+.preview-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Resume/restart choice, shown over the frame on return. */
+.preview-resume {
+  position: absolute;
+  inset: 0;
+  background: var(--color-paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  text-align: center;
+}
+
+.preview-resume[hidden] {
+  display: none;
+}
+
+.preview-resume-actions {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+}
+
+.preview-btn {
+  font: inherit;
+  font-size: var(--font-size-colophon);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+  border-radius: 2px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
 .spread-hint {
   margin-top: var(--space-3);
   opacity: 0.6;

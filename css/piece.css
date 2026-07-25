@@ -1,0 +1,72 @@
+/* The piece — the actual product build (Anniversary Scroll).
+   This same file/page serves BOTH the preview and the purchased piece;
+   the only difference is the ?gate= parameter. See STORIEL_BRIEF.md §7:
+   one codebase, so a preview can never drift from the real product. */
+
+.piece {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.piece .page {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4) var(--space-3);
+  gap: var(--space-2);
+}
+
+.piece-year {
+  font-size: var(--font-size-colophon);
+  letter-spacing: 0.08em;
+  color: var(--seal-3-text);
+  margin: 0;
+}
+
+.piece-line {
+  max-width: 24rem;
+  margin: 0;
+}
+
+.piece-names {
+  margin: 0;
+}
+
+/* Photograph placeholders. Real images do not exist yet — these are
+   labelled blocks, not decoration pretending to be a photograph. */
+.piece-photo {
+  width: min(280px, 65vw);
+  aspect-ratio: 4 / 3;
+  background: var(--seal-3);
+  color: var(--color-ink);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-colophon);
+}
+
+.piece-letter {
+  max-width: 26rem;
+  text-align: left;
+}
+
+/* The gate: where a preview stops. Present only when ?gate= is set, so
+   the purchased piece never renders it. */
+.piece-gate {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4) var(--space-3);
+  gap: var(--space-2);
+}
