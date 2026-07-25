@@ -6,11 +6,26 @@
   /* Color — provisional, will be replaced by physically sampled hues */
   --color-paper: #FAF7F2; /* provisional */
   --color-ink: #26211C; /* provisional */
-  --color-seal-1: #5B6EA5; /* provisional */
-  --color-seal-2: #C4572E; /* provisional */
-  --color-seal-3: #5C6B4F; /* provisional */
-  --color-seal-4: #6E4A6B; /* provisional */
-  --color-seal-5: #C79A3B; /* provisional */
+
+  /* Seal colors — working palette C "Faded Celebration", adopted as a
+     provisional working set (DECISIONS.md). Each seal is a PAIR:
+       --seal-N       display tint — backgrounds, thumbnails, blocks only;
+                      too light for text on paper (2.0–3.0:1)
+       --seal-N-text  same OKLCH hue darkened until it passes WCAG AA
+                      4.5:1 against --color-paper — the only seal form
+                      allowed for text at any size
+     Never put a bare tint on text; never assume the pair drifts apart —
+     re-derive -text if a tint ever changes. */
+  --seal-1: #C4838B; /* provisional; tint, 2.82:1 vs paper */
+  --seal-1-text: #9E6069; /* provisional; 4.54:1 vs paper */
+  --seal-2: #7A96B8; /* provisional; tint, 2.86:1 vs paper */
+  --seal-2-text: #5A7495; /* provisional; 4.50:1 vs paper */
+  --seal-3: #A8B58A; /* provisional; tint, 2.04:1 vs paper */
+  --seal-3-text: #6B764E; /* provisional; 4.54:1 vs paper */
+  --seal-4: #D9A94E; /* provisional; tint, 2.02:1 vs paper */
+  --seal-4-text: #956A00; /* provisional; 4.53:1 vs paper */
+  --seal-5: #9B8AA3; /* provisional; tint, 3.00:1 vs paper */
+  --seal-5-text: #7D6C85; /* provisional; 4.51:1 vs paper */
 
   /* Typography — provisional placeholder family; founder has not chosen
      a final typeface yet (STORIEL_BRIEF.md §9.1). Swap this one variable

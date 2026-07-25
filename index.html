@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
-<link rel="stylesheet" href="css/tokens.css?v=2">
+<link rel="stylesheet" href="css/tokens.css?v=3">
 <link rel="stylesheet" href="css/base.css?v=2">
 <link rel="stylesheet" href="css/layout.css?v=2">
 <link rel="stylesheet" href="css/motion.css?v=2">
@@ -21,14 +21,16 @@
   .swatch code { font-size: var(--font-size-colophon); display: block; margin-top: var(--space-1); }
   .type-row { margin-bottom: var(--space-2); }
   .space-row { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1); }
-  .space-bar { background: var(--color-seal-1); height: 12px; }
+  .space-bar { background: var(--seal-1); height: 12px; }
   .fleuron-demo { font-size: 2rem; padding: var(--space-2); border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); display: inline-flex; }
-  .opening-cover { background: var(--color-seal-2); color: var(--color-paper); border-radius: 4px; padding: var(--space-3); cursor: pointer; }
-  .opening-panel { background: var(--color-seal-4); color: var(--color-paper); border-radius: 4px; padding: var(--space-3); }
+  /* Palette C tints are light, so card text is ink, not paper — paper on
+     a tint fails contrast. Seal-colored text uses the -text shades only. */
+  .opening-cover { background: var(--seal-2); color: var(--color-ink); border-radius: 4px; padding: var(--space-3); cursor: pointer; }
+  .opening-panel { background: var(--seal-4); color: var(--color-ink); border-radius: 4px; padding: var(--space-3); }
   .storytelling-demo { height: 60vh; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
-  .storytelling-demo .spread:nth-child(1) { background: color-mix(in srgb, var(--color-seal-1) 12%, var(--color-paper)); }
-  .storytelling-demo .spread:nth-child(2) { background: color-mix(in srgb, var(--color-seal-3) 12%, var(--color-paper)); }
-  .storytelling-demo .spread:nth-child(3) { background: color-mix(in srgb, var(--color-seal-4) 12%, var(--color-paper)); }
+  .storytelling-demo .spread:nth-child(1) { background: color-mix(in srgb, var(--seal-1) 12%, var(--color-paper)); }
+  .storytelling-demo .spread:nth-child(2) { background: color-mix(in srgb, var(--seal-3) 12%, var(--color-paper)); }
+  .storytelling-demo .spread:nth-child(3) { background: color-mix(in srgb, var(--seal-4) 12%, var(--color-paper)); }
   .errand-demo { height: 30vh; overflow-y: auto; border: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent); }
   .provisional-note { font-size: var(--font-size-colophon); opacity: 0.7; }
   .reset-demo { font: inherit; font-size: var(--font-size-colophon); background: none; border: none; padding: 0; margin-top: var(--space-1); color: var(--color-ink); text-decoration: underline; cursor: pointer; }
@@ -58,7 +60,7 @@
 
   <section>
     <h2>Color</h2>
-    <p class="colophon provisional-note">All values below are provisional and will be replaced by physically sampled hues.</p>
+    <p class="colophon provisional-note">All values are provisional and will be replaced by physically sampled hues. Seal colors are shown as tint/text pairs in the next section.</p>
     <div class="swatches">
       <div class="swatch">
         <div class="swatch-color" style="background: var(--color-paper); border: 1px solid #ddd;"></div>
@@ -68,70 +70,41 @@
         <div class="swatch-color" style="background: var(--color-ink);"></div>
         <code>ink #26211C</code>
       </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background: var(--color-seal-1);"></div>
-        <code>seal-1 #5B6EA5</code>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background: var(--color-seal-2);"></div>
-        <code>seal-2 #C4572E</code>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background: var(--color-seal-3);"></div>
-        <code>seal-3 #5C6B4F</code>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background: var(--color-seal-4);"></div>
-        <code>seal-4 #6E4A6B</code>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background: var(--color-seal-5);"></div>
-        <code>seal-5 #C79A3B</code>
-      </div>
     </div>
   </section>
 
   <section>
-    <h2>Palette comparison</h2>
-    <p class="colophon provisional-note">Four candidate seal palettes (STORIEL_BRIEF.md open question §9.4). Choosing one previews it live — against the catalogue-thumbnail placeholders and small colophon-size text below, and against the opening-ceremony demo card further down the page — without saving anything; the token file keeps today's provisional colors until a palette is actually chosen. Contrast below is checked against the paper background (#FAF7F2) at colophon size, WCAG AA normal-text threshold (4.5:1).</p>
+    <h2>Seal palette — working set (palette C, provisional)</h2>
+    <p class="colophon provisional-note">Palette C "Faded Celebration" is adopted as the working seal palette, still provisional until physical sampling (STORIEL_BRIEF.md §9.4). Each seal is a pair: a display tint (blocks, thumbnails, backgrounds — never text) and a text shade — the same OKLCH hue darkened until it passes WCAG AA 4.5:1 against paper. Ratios below are computed live from the token values, so this display cannot drift from <code>css/tokens.css</code>.</p>
 
-    <div class="compare-toggle" id="palette-toggle" role="group" aria-label="Choose a palette to preview">
-      <button type="button" class="compare-chip is-active" data-palette="current">Current (provisional)</button>
-      <button type="button" class="compare-chip" data-palette="a">A — Ink &amp; Pigment</button>
-      <button type="button" class="compare-chip" data-palette="b">B — Wax &amp; Thread</button>
-      <button type="button" class="compare-chip" data-palette="c">C — Faded Celebration</button>
-      <button type="button" class="compare-chip" data-palette="d">D — One Color</button>
-    </div>
-
-    <h3>Contrast against paper, per seal slot</h3>
     <div class="palette-slots">
-      <div class="palette-slot">
-        <div class="palette-thumb" style="background: var(--color-seal-1);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--color-seal-1);">Small text, seal-1.</p>
+      <div class="palette-slot" data-seal="1">
+        <div class="palette-thumb" style="background: var(--seal-1);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--seal-1-text);">Text shade, seal-1.</p>
         <p class="contrast-label" id="seal-1-contrast"></p>
       </div>
-      <div class="palette-slot">
-        <div class="palette-thumb" style="background: var(--color-seal-2);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--color-seal-2);">Small text, seal-2.</p>
+      <div class="palette-slot" data-seal="2">
+        <div class="palette-thumb" style="background: var(--seal-2);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--seal-2-text);">Text shade, seal-2.</p>
         <p class="contrast-label" id="seal-2-contrast"></p>
       </div>
-      <div class="palette-slot">
-        <div class="palette-thumb" style="background: var(--color-seal-3);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--color-seal-3);">Small text, seal-3.</p>
+      <div class="palette-slot" data-seal="3">
+        <div class="palette-thumb" style="background: var(--seal-3);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--seal-3-text);">Text shade, seal-3.</p>
         <p class="contrast-label" id="seal-3-contrast"></p>
       </div>
-      <div class="palette-slot">
-        <div class="palette-thumb" style="background: var(--color-seal-4);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--color-seal-4);">Small text, seal-4.</p>
+      <div class="palette-slot" data-seal="4">
+        <div class="palette-thumb" style="background: var(--seal-4);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--seal-4-text);">Text shade, seal-4.</p>
         <p class="contrast-label" id="seal-4-contrast"></p>
       </div>
-      <div class="palette-slot">
-        <div class="palette-thumb" style="background: var(--color-seal-5);"></div>
-        <p class="colophon palette-text-sample" style="color: var(--color-seal-5);">Small text, seal-5.</p>
+      <div class="palette-slot" data-seal="5">
+        <div class="palette-thumb" style="background: var(--seal-5);"></div>
+        <p class="colophon palette-text-sample" style="color: var(--seal-5-text);">Text shade, seal-5.</p>
         <p class="contrast-label" id="seal-5-contrast"></p>
       </div>
     </div>
-    <p class="colophon provisional-note">The opening-ceremony demo card further down this page uses seal-2 for its cover and seal-4 for its panel — scroll down to judge it against real UI, not just swatches.</p>
+    <p class="colophon provisional-note">The opening-ceremony demo card further down this page uses the seal-2 tint for its cover and the seal-4 tint for its panel (with ink text — the tints are too light to carry paper text). The catalogue thumbnails use tints 1–4.</p>
   </section>
 
   <section>
@@ -144,7 +117,7 @@
 
   <section>
     <h2>Typeface comparison</h2>
-    <p class="colophon provisional-note">The three candidates from STORIEL_BRIEF.md §5 / §9.1. Choosing one previews it live across this entire page — this section, the type sizes above, the colophon captions throughout, and the opening-ceremony demo card further down — the same way the palette toggle above works. Nothing is saved; the token file keeps the placeholder until a typeface is actually chosen. Fraunces is shown at its low optical size, per the brief's specific interest in that variant.</p>
+    <p class="colophon provisional-note">The three candidates from STORIEL_BRIEF.md §5 / §9.1. Choosing one previews it live across this entire page — this section, the type sizes above, the colophon captions throughout, and the opening-ceremony demo card further down — without saving anything; the token file keeps the placeholder until a typeface is actually chosen. Fraunces is shown at its low optical size, per the brief's specific interest in that variant.</p>
 
     <div class="compare-toggle" id="font-toggle" role="group" aria-label="Choose a typeface to preview">
       <button type="button" class="compare-chip is-active" data-font="current">Current (provisional)</button>
@@ -232,71 +205,47 @@
   });
 </script>
 <script>
-  // Palette comparison — Phase 1 review tool, not part of the site itself.
-  // Previews candidate palettes by overriding --color-seal-* on :root, which
-  // every existing var()-consuming element (demo card, swatches below,
-  // colophon text) already picks up. Nothing here touches css/tokens.css.
+  // Seal-pair audit — Phase 1 review tool, not part of the site itself.
+  // Reads the live token values (never a hardcoded copy) and prints each
+  // pair's contrast against paper, so tokens.css and this display can't
+  // silently disagree. Text shades must clear 4.5:1 (AA normal text).
   (function () {
-    const root = document.documentElement;
-    const PAPER = '#FAF7F2';
+    const rootStyle = getComputedStyle(document.documentElement);
 
-    function hexToRgb(hex) {
-      const h = hex.replace('#', '');
-      return [0, 2, 4].map((i) => parseInt(h.substring(i, i + 2), 16));
-    }
     function srgbToLinear(c) {
       const s = c / 255;
       return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
     }
-    function relativeLuminance(rgb) {
+    function luminance(rgb) {
       const [r, g, b] = rgb.map(srgbToLinear);
       return 0.2126 * r + 0.7152 * g + 0.0722 * b;
     }
-    function contrastRatio(hexA, hexB) {
-      const lA = relativeLuminance(hexToRgb(hexA));
-      const lB = relativeLuminance(hexToRgb(hexB));
-      const lighter = Math.max(lA, lB);
-      const darker = Math.min(lA, lB);
-      return (lighter + 0.05) / (darker + 0.05);
+    function parseColor(value) {
+      // tokens are hex, but parse via canvas-free normalization: #RRGGBB only
+      const h = value.trim().replace('#', '');
+      return [0, 2, 4].map((i) => parseInt(h.substring(i, i + 2), 16));
+    }
+    function contrastRatio(a, b) {
+      const lA = luminance(parseColor(a));
+      const lB = luminance(parseColor(b));
+      return (Math.max(lA, lB) + 0.05) / (Math.min(lA, lB) + 0.05);
     }
 
-    const CURRENT_SEAL_COLORS = ['#5B6EA5', '#C4572E', '#5C6B4F', '#6E4A6B', '#C79A3B'];
-    const PALETTES = {
-      current: CURRENT_SEAL_COLORS,
-      a: ['#3B4A6B', '#B0492F', '#5C6B4F', '#6E4A6B', '#A67F2E'],
-      b: ['#9E2B25', '#2E4C8A', '#274E3D', '#D98E5F', '#5E8A87'],
-      c: ['#C4838B', '#7A96B8', '#A8B58A', '#D9A94E', '#9B8AA3'],
-      d: ['#8E2A23', '#8E2A23', '#8E2A23', '#8E2A23', '#8E2A23'],
-    };
+    const paper = rootStyle.getPropertyValue('--color-paper').trim();
 
-    const paletteButtons = Array.from(document.querySelectorAll('#palette-toggle .compare-chip'));
-
-    function applyPalette(key) {
-      PALETTES[key].forEach((hex, i) => {
-        const slot = i + 1;
-        if (key === 'current') {
-          root.style.removeProperty(`--color-seal-${slot}`);
-        } else {
-          root.style.setProperty(`--color-seal-${slot}`, hex);
-        }
-        const ratio = contrastRatio(hex, PAPER);
-        const passes = ratio >= 4.5;
-        const label = document.getElementById(`seal-${slot}-contrast`);
-        if (label) {
-          label.textContent = `${hex} — ${ratio.toFixed(2)}:1 ${passes ? 'PASS' : 'FAIL (below 4.5:1 AA)'}`;
-          label.classList.toggle('contrast-fail', !passes);
-        }
-      });
+    for (let slot = 1; slot <= 5; slot += 1) {
+      const tint = rootStyle.getPropertyValue(`--seal-${slot}`).trim();
+      const text = rootStyle.getPropertyValue(`--seal-${slot}-text`).trim();
+      const label = document.getElementById(`seal-${slot}-contrast`);
+      if (!label || !tint || !text) continue;
+      const tintRatio = contrastRatio(tint, paper);
+      const textRatio = contrastRatio(text, paper);
+      const passes = textRatio >= 4.5;
+      label.textContent =
+        `tint ${tint} ${tintRatio.toFixed(2)}:1 · text ${text} ${textRatio.toFixed(2)}:1 ` +
+        (passes ? 'PASS' : 'FAIL (below 4.5:1 AA)');
+      label.classList.toggle('contrast-fail', !passes);
     }
-
-    paletteButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        paletteButtons.forEach((b) => b.classList.toggle('is-active', b === button));
-        applyPalette(button.dataset.palette);
-      });
-    });
-
-    applyPalette('current');
   })();
 </script>
 <script>

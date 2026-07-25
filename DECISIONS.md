@@ -210,3 +210,52 @@ files.
   launch catalogue size (this phase used 4 as a placeholder count, not
   a decision), preview gate thresholds, Ada & June content, payment
   provider.
+
+## Seal palette: palette C adopted as working set, restructured as tint/text pairs
+
+- **Founder decision:** palette C "Faded Celebration" is the working
+  seal palette — still provisional until physical sampling (§9.4), but
+  it replaces the original provisional hexes in `css/tokens.css`.
+- **Why pairs:** every C tint fails WCAG AA for text against paper
+  (2.0–3.0:1, below even the 3:1 large-text bar — measured during the
+  palette comparison). Rather than reject the palette or ship failing
+  text, each seal token is now a pair:
+  - `--seal-N` — the display tint, exactly the founder's C values.
+    Backgrounds, thumbnails, blocks only; never text.
+  - `--seal-N-text` — the same hue converted to OKLCH, lightness
+    reduced (hue/chroma held; binary-searched to the *highest*
+    lightness that still passes, so the shade stays as close to the
+    tint as the contrast floor allows) until it clears 4.5:1 against
+    paper. The only seal form allowed on text at any size.
+- **Derived values** (all verified ≥4.5:1 after hex rounding; seal-4
+  needed a small chroma clamp, 0.122→0.115, to stay inside sRGB gamut
+  when darkened):
+  | slot | tint (vs paper) | text shade (vs paper) |
+  |---|---|---|
+  | seal-1 | #C4838B (2.82:1) | #9E6069 (4.54:1) |
+  | seal-2 | #7A96B8 (2.86:1) | #5A7495 (4.50:1) |
+  | seal-3 | #A8B58A (2.04:1) | #6B764E (4.54:1) |
+  | seal-4 | #D9A94E (2.02:1) | #956A00 (4.53:1) |
+  | seal-5 | #9B8AA3 (3.00:1) | #7D6C85 (4.51:1) |
+- **Token rename:** `--color-seal-N` → `--seal-N` (+ new
+  `--seal-N-text`), per the founder's requested naming. All references
+  migrated (style page, catalogue thumbnails); nothing else consumed
+  the old names.
+- **Consequential change — demo card text:** the card previously set
+  paper-colored text on its seal backgrounds. On C's light tints that
+  fails badly, and a tint-on-tint or text-shade-on-tint combination
+  can't reach 4.5:1 either, so the card now uses **ink** text on tint
+  backgrounds (≈5.5:1 on the worst tint). Rule of thumb going forward:
+  tints carry ink text, paper carries either ink or `--seal-N-text`
+  text, and bare tints never carry text of any color.
+- **Style page:** the candidate-palette toggle (A–D) is retired — its
+  job was choosing, and a choice has been made; DECISIONS.md records
+  the losing candidates. In its place the section shows the five
+  adopted pairs: tint block, text shade beneath it at colophon size,
+  and both contrast ratios computed live in the browser from the
+  actual token values (not a hardcoded copy), so the display can't
+  silently disagree with `css/tokens.css`. The typeface comparison
+  toggle remains — that question is still open.
+- Verified: all five pairs pass in the live audit, demo card opens
+  correctly with the new colors, catalogue thumbnails resolve to the C
+  tints, no console errors on either page.
