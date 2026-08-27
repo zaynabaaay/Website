@@ -3,14 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Storiel — small interactive keepsakes and invitations</title>
-<meta name="description" content="Storiel makes small interactive keepsakes and invitations for weddings, anniversaries and birthdays. Everything is closed until you open it.">
+<title>Storiel — digital keepsakes and invitations</title>
+<meta name="description" content="Storiel makes small digital keepsakes and invitations for meaningful occasions.">
 <link rel="stylesheet" href="css/tokens.css?v=4">
 <link rel="stylesheet" href="css/base.css?v=2">
-<link rel="stylesheet" href="css/layout.css?v=2">
-<link rel="stylesheet" href="css/motion.css?v=2">
 <link rel="stylesheet" href="css/product.css?v=3">
-<link rel="stylesheet" href="css/home.css?v=1">
+<link rel="stylesheet" href="css/home.css?v=2">
 </head>
 <body>
 
@@ -21,48 +19,81 @@
   <span class="nav-pending">Cart</span>
 </nav>
 
-<div class="zone-storytelling home">
-
-  <section class="spread">
-    <span class="fleuron" aria-hidden="true">&#10087;</span>
-    <h1 class="home-statement">Everything here is closed until you open it.</h1>
-    <p class="home-sub">Storiel makes small interactive keepsakes and invitations, one at a time.</p>
-    <p class="colophon spread-hint">Scroll to read on.</p>
+<main class="home">
+  <section class="home-hero" aria-labelledby="home-title">
+    <p class="home-kicker">Storiel</p>
+    <h1 id="home-title">Digital keepsakes for meaningful occasions.</h1>
+    <p class="home-intro">Small, thoughtful pieces made to hold photographs, words, and the moments you want to keep.</p>
+    <a class="home-text-link" href="catalogue/">Browse the catalogue <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="spread">
-    <div class="opening" data-opening-id="home-demonstration">
-      <div class="opening-cover opening-trigger openable" tabindex="0" role="button" aria-expanded="false" aria-label="Open">
-        <span class="fleuron" aria-hidden="true">&#10087;</span>
-        <p>A small world.</p>
-      </div>
-      <div class="opening-panel" aria-hidden="true">
-        <span class="fleuron" aria-hidden="true">&#10087;</span>
-        <p>Open.</p>
-      </div>
+  <section class="home-section" aria-labelledby="featured-title">
+    <div class="home-section-heading">
+      <p class="home-kicker">Featured</p>
+      <h2 id="featured-title">A place to begin.</h2>
     </div>
-    <p class="colophon">This is what every piece does. Yours holds your own photographs and writing.</p>
+    <div class="product-list">
+      <a class="product-card" href="save-the-date/">
+        <span class="product-card-mark seal-1" aria-hidden="true"></span>
+        <span class="product-card-copy">
+          <span class="product-card-title">Save the Date</span>
+          <span class="product-card-meta">Wedding · a thirty-second story</span>
+        </span>
+        <span class="product-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="product-card" href="wedding-invitation/">
+        <span class="product-card-mark seal-2" aria-hidden="true"></span>
+        <span class="product-card-copy">
+          <span class="product-card-title">Wedding Invitation</span>
+          <span class="product-card-meta">Wedding · a one-minute story</span>
+        </span>
+        <span class="product-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="product-card" href="anniversary/">
+        <span class="product-card-mark seal-3" aria-hidden="true"></span>
+        <span class="product-card-copy">
+          <span class="product-card-title">Anniversary Scroll</span>
+          <span class="product-card-meta">Anniversary · a two-minute story</span>
+        </span>
+        <span class="product-card-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="product-card" href="birthday/">
+        <span class="product-card-mark seal-4" aria-hidden="true"></span>
+        <span class="product-card-copy">
+          <span class="product-card-title">Birthday Story</span>
+          <span class="product-card-meta">Birthday · a two-minute story</span>
+        </span>
+        <span class="product-card-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
   </section>
 
-  <section class="spread">
-    <h2>What has happened</h2>
-    <ul class="toc">
-      <li><a href="save-the-date/">A date has been set.</a></li>
-      <li><a href="wedding-invitation/">Someone is getting married.</a></li>
-      <li><a href="anniversary/">Two people have been together for years.</a></li>
-      <li><a href="birthday/">Someone is having a birthday.</a></li>
-    </ul>
+  <section class="home-section home-occasions" aria-labelledby="occasions-title">
+    <div class="home-section-heading">
+      <p class="home-kicker">Browse by occasion</p>
+      <h2 id="occasions-title">Find the right piece.</h2>
+    </div>
+    <div class="occasion-links">
+      <a href="catalogue/">Wedding</a>
+      <a href="catalogue/">Anniversary</a>
+      <a href="catalogue/">Birthday</a>
+      <a href="catalogue/">All occasions</a>
+    </div>
   </section>
 
-  <section class="spread">
-    <h2>All of it</h2>
-    <p class="home-catalogue-link"><a href="catalogue/">Catalogue</a></p>
-    <p class="colophon">Four pieces. Prices, durations, and what each one holds.</p>
+  <section class="home-section home-about" aria-labelledby="about-title">
+    <div class="home-section-heading">
+      <p class="home-kicker">What Storiel offers</p>
+      <h2 id="about-title">A quieter way to share something important.</h2>
+    </div>
+    <p>Storiel makes digital invitations and keepsakes that bring your own photographs and writing together in one considered place. Choose a piece, make it yours, and send a small world to the people it is for.</p>
   </section>
+</main>
 
-</div>
+<footer class="home-footer">
+  <span>Storiel</span>
+  <a href="catalogue/">Catalogue</a>
+</footer>
 
-<script src="js/motion.js?v=2"></script>
-<script src="js/home.js?v=1"></script>
 </body>
 </html>
