@@ -50,14 +50,14 @@
 
 .home-hero-visual {
   justify-self: end;
-  width: min(100%, 22rem);
+  width: min(100%, 26rem);
 }
 
 .home-hero-preview {
   display: block;
   width: 100%;
-  height: 27rem;
-  border: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+  height: 34rem;
+  border: 0;
   background: var(--color-paper);
 }
 
@@ -191,7 +191,7 @@
   }
 
   .home-hero-visual {
-    width: min(100%, 22rem);
+    width: min(100%, 26rem);
     margin: var(--space-5) auto 0;
   }
 
