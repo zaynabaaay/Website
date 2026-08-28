@@ -116,7 +116,7 @@
 
 .featured-grid {
   display: grid;
-  grid-template-columns: 1.12fr 0.88fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
   gap: clamp(var(--space-3), 5vw, var(--space-5));
 }
@@ -125,9 +125,8 @@
   min-width: 0;
 }
 
-.featured-piece:nth-child(3) {
-  grid-column: 2;
-  margin-top: calc(var(--space-4) * -1);
+.featured-piece-lead {
+  grid-column: 1 / -1;
 }
 
 .featured-piece-image-link {
@@ -229,10 +228,6 @@
 
   .featured-grid {
     display: block;
-  }
-
-  .featured-piece:nth-child(3) {
-    margin-top: var(--space-4);
   }
 
   .featured-piece + .featured-piece {
