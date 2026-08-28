@@ -7,7 +7,36 @@
 }
 
 .homepage .site-nav {
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
   font-family: var(--home-font-sans);
+}
+
+.homepage .site-brand {
+  margin-right: auto;
+  font-size: var(--font-size-colophon);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.homepage .site-brand[aria-current="page"] {
+  font-weight: 600;
+}
+
+.homepage .site-brand:hover,
+.homepage .site-brand:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.homepage .site-nav > a:not(.site-brand) {
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+.homepage .site-nav > a:not(.site-brand):hover,
+.homepage .site-nav > a:not(.site-brand):focus-visible {
+  text-decoration: underline;
 }
 
 .homepage h1,
@@ -258,6 +287,12 @@
 }
 
 @media (max-width: 640px) {
+  .homepage .site-nav {
+    gap: var(--space-2);
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
   .home {
     padding: 7rem var(--space-2) var(--space-4);
   }
