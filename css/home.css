@@ -53,12 +53,64 @@
   width: min(100%, 26rem);
 }
 
-.home-hero-preview {
+.home-hero-mockup {
   display: block;
   width: 100%;
-  height: 34rem;
-  border: 0;
+  aspect-ratio: 0.72;
+  padding: var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--color-ink) 22%, transparent);
+  border-radius: 1.25rem;
+  background: var(--color-ink);
+  color: var(--color-ink);
+  box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-ink) 16%, transparent);
+  text-decoration: none;
+}
+
+.mockup-topbar,
+.mockup-screen {
+  display: flex;
+}
+
+.mockup-topbar {
+  justify-content: space-between;
+  color: var(--color-paper);
+  font-size: var(--font-size-colophon);
+  padding: var(--space-1) var(--space-1) var(--space-2);
+}
+
+.mockup-screen {
+  height: calc(100% - 2.25rem);
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(var(--space-3), 8%, var(--space-5)) var(--space-3);
+  border-radius: 0.75rem;
   background: var(--color-paper);
+  text-align: center;
+}
+
+.mockup-eyebrow {
+  font-size: var(--font-size-colophon);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mockup-title {
+  margin-top: var(--space-2);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  line-height: 1.05;
+}
+
+.mockup-image {
+  width: min(100%, 13rem);
+  aspect-ratio: 1 / 1.15;
+  margin: auto 0;
+  border-radius: 0.25rem;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--seal-2) 70%, var(--color-paper)), color-mix(in srgb, var(--seal-3) 75%, var(--color-paper)));
+}
+
+.mockup-action {
+  font-size: var(--font-size-colophon);
+  text-underline-offset: 0.2em;
 }
 
 .home-hero-caption {
