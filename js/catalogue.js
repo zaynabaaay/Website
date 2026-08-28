@@ -10,7 +10,7 @@ const emptyMessage = document.getElementById('catalogue-empty');
 let activeOccasion = 'all';
 
 function applyFilters() {
-  const query = searchInput.value.trim().toLowerCase();
+  const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
   let visibleCount = 0;
 
   cards.forEach((card) => {
@@ -32,4 +32,4 @@ filterButtons.forEach((button) => {
   });
 });
 
-searchInput.addEventListener('input', applyFilters);
+if (searchInput) searchInput.addEventListener('input', applyFilters);

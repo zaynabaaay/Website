@@ -24,7 +24,7 @@
 }
 
 .catalogue-page header {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .catalogue-page h1 {
@@ -46,23 +46,6 @@
   padding: var(--space-2) 0;
   border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
-}
-
-.catalogue-search {
-  flex: 1 1 16rem;
-  min-width: 0;
-  padding: 0.75rem 0 0.6rem;
-  border: 0;
-  border-bottom: 2px solid color-mix(in srgb, var(--color-ink) 42%, transparent);
-  border-radius: 0;
-  background: transparent;
-  color: var(--color-ink);
-  font: inherit;
-  font-size: var(--font-size-colophon);
-}
-
-.catalogue-search::placeholder {
-  color: color-mix(in srgb, var(--color-ink) 60%, transparent);
 }
 
 .catalogue-filters {
@@ -183,10 +166,6 @@
   .catalogue-controls {
     align-items: stretch;
     margin-bottom: var(--space-3);
-  }
-
-  .catalogue-search {
-    flex-basis: 100%;
   }
 
   .catalogue-filters {
