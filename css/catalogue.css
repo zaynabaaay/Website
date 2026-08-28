@@ -1,61 +1,104 @@
-/* Catalogue index — errand zone. Conventional, fast, no ceremony.
-   See STORIEL_BRIEF.md §3, §8 Phase 2. */
+/* Catalogue index — a quiet, image-led errand zone. */
+
+.catalogue-page {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.catalogue-page .site-brand {
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.catalogue-page .site-brand[aria-current="page"] {
+  font-weight: 600;
+}
+
+.catalogue-page .site-nav > a:not(.site-brand) {
+  text-underline-offset: 0.2em;
+}
+
+.catalogue-page .page {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 9rem var(--space-3) var(--space-5);
+}
+
+.catalogue-page header {
+  margin-bottom: var(--space-4);
+}
+
+.catalogue-page h1 {
+  max-width: 42rem;
+  margin: 0;
+  font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+}
 
 .catalogue-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
   align-items: center;
-  margin: var(--space-3) 0;
+  gap: var(--space-2) var(--space-3);
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
 }
 
 .catalogue-search {
-  font: inherit;
-  font-size: var(--font-size-body);
-  padding: var(--space-1) var(--space-2);
-  border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
-  border-radius: 2px;
-  background: var(--color-paper);
+  flex: 1 1 16rem;
+  min-width: 0;
+  padding: 0.65rem 0;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+  border-radius: 0;
+  background: transparent;
   color: var(--color-ink);
-  flex: 1 1 240px;
+  font: inherit;
+  font-size: var(--font-size-colophon);
+}
+
+.catalogue-search::placeholder {
+  color: color-mix(in srgb, var(--color-ink) 60%, transparent);
 }
 
 .catalogue-filters {
   display: flex;
-  gap: var(--space-1);
   flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .filter-chip {
-  font: inherit;
-  font-size: var(--font-size-colophon);
-  padding: var(--space-1) var(--space-2);
-  border: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
-  border-radius: 999px;
-  background: var(--color-paper);
+  padding: 0.25rem 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
   color: var(--color-ink);
   cursor: pointer;
+  font: inherit;
+  font-size: var(--font-size-colophon);
 }
 
+.filter-chip:hover,
+.filter-chip:focus-visible,
 .filter-chip.is-active {
-  background: var(--color-ink);
-  color: var(--color-paper);
-  border-color: var(--color-ink);
+  border-bottom-color: currentColor;
 }
 
 .catalogue-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(var(--space-3), 4vw, var(--space-4));
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--space-3);
 }
 
 .catalogue-card {
-  border: 1px solid color-mix(in srgb, var(--color-ink) 15%, transparent);
-  border-radius: 4px;
-  padding: var(--space-2);
+  min-width: 0;
 }
 
 .catalogue-card[hidden] {
@@ -63,35 +106,86 @@
 }
 
 .catalogue-thumb {
-  aspect-ratio: 3 / 4;
-  border-radius: 2px;
+  aspect-ratio: 4 / 5;
   margin-bottom: var(--space-2);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-ink) 8%, var(--color-paper));
+}
+
+.catalogue-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .catalogue-card h2 {
-  font-size: var(--font-size-body);
-  margin: 0 0 var(--space-1);
+  margin: 0;
+  font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-/* Cards that lead somewhere wrap their whole body in one link, so the
-   thumbnail and text are a single target. Products without a page yet
-   are plain, unlinked cards. */
 .catalogue-link {
   display: block;
   color: inherit;
   text-decoration: none;
 }
 
-.catalogue-link:hover h2 {
+.catalogue-link:hover h2,
+.catalogue-link:focus-visible h2 {
   text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.catalogue-card .colophon {
+  margin: 0.5rem 0 0;
+  color: color-mix(in srgb, var(--color-ink) 65%, transparent);
+  font-size: var(--font-size-colophon);
 }
 
 .catalogue-price {
-  font-weight: 500;
-  margin: var(--space-1) 0 0;
+  margin: 0.5rem 0 0;
+  font-size: var(--font-size-colophon);
 }
 
 .catalogue-empty {
-  text-align: center;
   padding: var(--space-4) 0;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .catalogue-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .catalogue-page .site-nav {
+    gap: var(--space-2);
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .catalogue-page .page {
+    padding: 7rem var(--space-2) var(--space-4);
+  }
+
+  .catalogue-page header {
+    margin-bottom: var(--space-3);
+  }
+
+  .catalogue-controls {
+    align-items: stretch;
+    margin-bottom: var(--space-3);
+  }
+
+  .catalogue-search {
+    flex-basis: 100%;
+  }
+
+  .catalogue-filters {
+    gap: var(--space-2);
+  }
 }

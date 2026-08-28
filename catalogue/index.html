@@ -8,19 +8,22 @@
 <link rel="stylesheet" href="../css/tokens.css?v=4">
 <link rel="stylesheet" href="../css/base.css?v=2">
 <link rel="stylesheet" href="../css/layout.css?v=2">
-<link rel="stylesheet" href="../css/catalogue.css?v=2">
-<style>
-  .page { max-width: 960px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
-  .provisional-note { font-size: var(--font-size-colophon); opacity: 0.7; }
-</style>
+<link rel="stylesheet" href="../css/product.css?v=3">
+<link rel="stylesheet" href="../css/catalogue.css?v=3">
 </head>
-<body>
-<div class="page zone-errand">
+<body class="catalogue-page">
+
+<nav class="site-nav" aria-label="Main">
+  <a class="site-brand" href="../" aria-label="Storiel — home">Storiel</a>
+  <a href="./" aria-current="page">Catalogue</a>
+  <span class="nav-pending">Studio</span>
+  <span class="nav-pending">Cart</span>
+</nav>
+
+<main class="page zone-errand">
 
   <header>
-    <p class="colophon"><a href="../">&larr; Home</a></p>
     <h1>Catalogue</h1>
-    <p class="colophon provisional-note">All four names, prices and colophon facts were written by the assistant, not the founder, and are unconfirmed — see DECISIONS.md.</p>
   </header>
 
   <div class="catalogue-controls">
@@ -36,7 +39,9 @@
   <ul class="catalogue-grid" id="catalogue-grid">
     <li class="catalogue-card" data-occasion="wedding" data-search="save the date wedding thirty second story">
       <a href="../save-the-date/" class="catalogue-link">
-        <div class="catalogue-thumb" style="background: var(--seal-1);"></div>
+        <div class="catalogue-thumb">
+          <img src="../public/featured/save-the-date.png" alt="Save the Date keepsake displayed on a phone against warm stone">
+        </div>
         <h2>Save the Date</h2>
         <p class="colophon">Wedding. A thirty-second story.</p>
         <p class="catalogue-price">&euro;40</p>
@@ -44,7 +49,9 @@
     </li>
     <li class="catalogue-card" data-occasion="wedding" data-search="wedding invitation one minute story">
       <a href="../wedding-invitation/" class="catalogue-link">
-        <div class="catalogue-thumb" style="background: var(--seal-2);"></div>
+        <div class="catalogue-thumb">
+          <img src="../public/occasions/weddings.png" alt="Wedding invitation setting in warm neutral tones">
+        </div>
         <h2>Wedding Invitation</h2>
         <p class="colophon">Wedding. A one-minute story.</p>
         <p class="catalogue-price">&euro;90</p>
@@ -52,7 +59,9 @@
     </li>
     <li class="catalogue-card" data-occasion="anniversary" data-search="anniversary scroll two minute story">
       <a href="../anniversary/" class="catalogue-link">
-        <div class="catalogue-thumb" style="background: var(--seal-3);"></div>
+        <div class="catalogue-thumb">
+          <img src="../public/featured/anniversary-scroll.png" alt="Anniversary Scroll keepsake displayed on a phone in an ivory setting">
+        </div>
         <h2>Anniversary Scroll</h2>
         <p class="colophon">Anniversary. A two-minute story.</p>
         <p class="catalogue-price">&euro;140</p>
@@ -60,7 +69,9 @@
     </li>
     <li class="catalogue-card" data-occasion="birthday" data-search="birthday story two minute story">
       <a href="../birthday/" class="catalogue-link">
-        <div class="catalogue-thumb" style="background: var(--seal-4);"></div>
+        <div class="catalogue-thumb">
+          <img src="../public/featured/birthday-story.png" alt="Birthday Story keepsake displayed on a phone against pale plaster">
+        </div>
         <h2>Birthday Story</h2>
         <p class="colophon">Birthday. A two-minute story.</p>
         <p class="catalogue-price">&euro;140</p>
@@ -70,7 +81,7 @@
 
   <p class="catalogue-empty" id="catalogue-empty" hidden>Nothing matches.</p>
 
-</div>
+</main>
 <script src="../js/catalogue.js?v=1"></script>
 </body>
 </html>
