@@ -3,7 +3,7 @@
 .home {
   max-width: 70rem;
   margin: 0 auto;
-  padding: 8rem var(--space-3) var(--space-5);
+  padding: 5.5rem var(--space-3) var(--space-5);
 }
 
 .home-hero {
@@ -11,8 +11,8 @@
   grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.72fr);
   align-items: center;
   gap: clamp(var(--space-4), 8vw, var(--space-5));
-  min-height: min(38rem, 72vh);
-  padding: var(--space-4) 0 var(--space-5);
+  min-height: clamp(30rem, 64vh, 36rem);
+  padding: var(--space-3) 0 var(--space-4);
 }
 
 .home-hero-copy {
@@ -61,7 +61,9 @@
 .home-hero-image {
   display: block;
   width: 100%;
-  height: auto;
+  height: clamp(30rem, 64vh, 36rem);
+  object-fit: cover;
+  object-position: center 48%;
   border-radius: 0.25rem;
   box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--color-ink) 16%, transparent);
 }
@@ -190,6 +192,11 @@
   .home-hero-visual {
     width: min(100%, 26rem);
     margin: var(--space-5) auto 0;
+  }
+
+  .home-hero-image {
+    height: auto;
+    object-fit: initial;
   }
 
   .product-list {
