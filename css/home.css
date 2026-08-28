@@ -166,6 +166,11 @@
   margin: 0 auto;
 }
 
+.featured-piece-lead .featured-piece-details {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
 .featured-piece:not(.featured-piece-lead) .featured-piece-image-link {
   max-width: 22rem;
   aspect-ratio: 4 / 5;
