@@ -40,19 +40,20 @@
 .catalogue-controls {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-end;
   gap: var(--space-2) var(--space-3);
-  margin: 0 0 var(--space-4);
-  padding-bottom: var(--space-2);
+  margin: 0 0 calc(var(--space-4) + 8px);
+  padding: var(--space-2) 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
 }
 
 .catalogue-search {
   flex: 1 1 16rem;
   min-width: 0;
-  padding: 0.65rem 0;
+  padding: 0.75rem 0 0.6rem;
   border: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+  border-bottom: 2px solid color-mix(in srgb, var(--color-ink) 42%, transparent);
   border-radius: 0;
   background: transparent;
   color: var(--color-ink);
@@ -67,7 +68,9 @@
 .catalogue-filters {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
   gap: var(--space-2);
+  padding-bottom: 0.6rem;
 }
 
 .filter-chip {
@@ -124,7 +127,7 @@
   font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
   font-size: 1.25rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .catalogue-link {
@@ -140,13 +143,14 @@
 }
 
 .catalogue-card .colophon {
-  margin: 0.5rem 0 0;
+  margin: 0.6rem 0 0;
   color: color-mix(in srgb, var(--color-ink) 65%, transparent);
   font-size: var(--font-size-colophon);
+  line-height: 1.4;
 }
 
 .catalogue-price {
-  margin: 0.5rem 0 0;
+  margin: 0.4rem 0 0;
   font-size: var(--font-size-colophon);
 }
 
