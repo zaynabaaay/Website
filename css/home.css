@@ -99,7 +99,7 @@
 }
 
 .home-featured .home-section-heading {
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 
 .home-section-heading h2 {
@@ -121,7 +121,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
-  gap: var(--space-3) clamp(var(--space-3), 4vw, var(--space-4));
+  gap: var(--space-2) clamp(var(--space-3), 4vw, var(--space-4));
 }
 
 .featured-piece {
