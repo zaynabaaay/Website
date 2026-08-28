@@ -1,5 +1,21 @@
 /* Homepage — restrained, product-first layout. */
 
+.homepage {
+  --home-font-serif: "Iowan Old Style", "Baskerville", Georgia, serif;
+  --home-font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--home-font-sans);
+}
+
+.homepage .site-nav {
+  font-family: var(--home-font-sans);
+}
+
+.homepage h1,
+.homepage h2 {
+  font-family: var(--home-font-serif);
+  font-weight: 500;
+}
+
 .home {
   max-width: 70rem;
   margin: 0 auto;
@@ -31,6 +47,11 @@
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.12;
   margin-bottom: var(--space-2);
+}
+
+.home-hero h1,
+.home-section-heading h2 {
+  letter-spacing: -0.015em;
 }
 
 .home-intro {
@@ -80,6 +101,16 @@
 .home-section-heading h2 {
   margin: 0;
   font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.home-intro,
+.home-text-link,
+.product-card,
+.product-card-meta,
+.occasion-links,
+.home-about > p,
+.home-footer {
+  font-family: var(--home-font-sans);
 }
 
 .product-list {
