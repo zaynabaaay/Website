@@ -281,9 +281,18 @@
   justify-content: space-between;
   max-width: 70rem;
   margin: 0 auto;
-  padding: var(--space-3) var(--space-3) var(--space-4);
+  align-items: baseline;
+  padding: var(--space-4) var(--space-3) var(--space-5);
   border-top: 1px solid color-mix(in srgb, var(--color-ink) 18%, transparent);
   font-size: var(--font-size-colophon);
+}
+
+.home-footer span {
+  letter-spacing: 0.04em;
+}
+
+.home-footer a {
+  text-underline-offset: 0.2em;
 }
 
 @media (max-width: 640px) {
@@ -335,6 +344,7 @@
   }
 
   .home-footer {
+    gap: var(--space-2);
     padding-left: var(--space-2);
     padding-right: var(--space-2);
   }
